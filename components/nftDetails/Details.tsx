@@ -17,40 +17,9 @@ const Details = () => {
       <div className="mt-6 bg-white dark:bg-[var(--color-gray-7)] px-2 xl:px-6 py-5 rounded-lg">
         <div className="flex items-center flex-wrap justify-between gap-3">
           <h6 className="text-2xl leading-[150%] font-bold text-[var(--color-gray-6)] dark:text-white -mt-1">
-            Bid History
+            Transactions
           </h6>
-          <div className="flex items-center flex-wrap gap-2 xl:gap-4">
-            <button
-              type={"button"}
-              className="bg-[var(--color-primary)] p-2 rounded-lg text-white"
-            >
-              1 week
-            </button>
-            <button
-              type={"button"}
-              className="border text-[var(--color-gray-4)] border-[var(--color-gray-4)] dark:text-[var(--color-gray-3)] dark:border-[var(--color-gray-3)] p-2 rounded-lg"
-            >
-              1 month
-            </button>
-            <button
-              type={"button"}
-              className="border text-[var(--color-gray-4)] border-[var(--color-gray-4)] dark:text-[var(--color-gray-3)] dark:border-[var(--color-gray-3)] p-2 rounded-lg"
-            >
-              3 months
-            </button>
-            <button
-              type={"button"}
-              className="border text-[var(--color-gray-4)] border-[var(--color-gray-4)] dark:text-[var(--color-gray-3)] dark:border-[var(--color-gray-3)] p-2 rounded-lg"
-            >
-              1 year
-            </button>
-            <button
-              type={"button"}
-              className="border text-[var(--color-gray-4)] border-[var(--color-gray-4)] dark:text-[var(--color-gray-3)] dark:border-[var(--color-gray-3)] p-2 rounded-lg"
-            >
-              3 years
-            </button>
-          </div>
+          
         </div>
         <div className="mt-5 sm:mt-[51px] flex flex-col gap-5 overflow-x-auto">
           {bidHistoryData.map((itm) => (

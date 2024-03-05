@@ -13,11 +13,30 @@ const Descriptions = () => {
         tempor tempor iaculis. Duis mauris est, fermentum id odio vitae, auctor
         euismod magna. Donec mollis cursus elit vitae posuere.
       </p>
+      
       <div className="mt-6 rounded-lg overflow-hidden">
         <div className="flex items-center flex-wrap justify-between gap-3 bg-white dark:bg-[var(--color-gray-7)] px-3 xl:px-6 pt-5 pb-7">
           <h6 className="text-2xl leading-[150%] font-bold text-[var(--color-gray-6)] dark:text-white -mt-1">
-            Price History
+            Investment
           </h6>
+          <div className="flex items-center justify-between border dark:border-[#3C4145] px-2 sm:px-5 py-1 sm:py-3 rounded-lg mt-3 dark:bg-[var(--color-gray-6)]">
+            <div className="min-w-[113px] relative">
+              {/* Select */}
+              Tokens
+            </div>
+            <div className="flex flex-1 flex-col items-end border-l dark:border-[#3C4145]">
+              <input
+                type={"text"}
+                className="w-full text-lg leading-[150%] text-right outline-none bg-transparent text-[var(--color-gray-5)] dark:text-white placeholder:text-[var(--color-gray-5)] dark:placeholder:text-[var(--color-gray-3)]"
+                placeholder="0.0"
+              />
+              <span className="text-base leading-[150%] text-right outline-none text-[var(--color-gray-4)]">
+                $0.0
+              </span>
+            </div>
+          </div>
+          
+
           <div className="flex items-center flex-wrap gap-2 xl:gap-4">
             <button
               type={"button"}
