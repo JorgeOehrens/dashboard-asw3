@@ -1,17 +1,28 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Select from "../common/Select";
 import btc from "/public/images/icon/btc.png";
 import doge from "/public/images/icon/doge.png";
 import ethereum from "/public/images/icon/ethereum.png";
 
+const useIsClient = () => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  return isClient;
+};
+
 const coinsLiquidity = [
-  { id: 1, name: "Better", icon: btc },
+  { id: 1, name: "ETH", icon: btc },
   { id: 2, name: "USD", icon: ethereum },
 ];
 
 const LiquidityMain = () => {
+  const isClient = useIsClient();
   const [swap, setSwap] = useState(false);
 
   const handleSwap = () => {
@@ -115,10 +126,13 @@ const LiquidityMain = () => {
             </span>
           </p>
         </div>
+        { isClient ?        <button className="w-full text-center text-lg leading-[150%] text-[#F8FAFC] bg-[var(--color-primary)] rounded-lg p-2 mt-8">
+          Witdrah
+        </button> :          <button className="w-full text-center text-lg leading-[150%] text-[#F8FAFC] bg-[var(--color-primary)] rounded-lg p-2 mt-8">
+          Conectando
+        </button>}
 
-        <button className="w-full text-center text-lg leading-[150%] text-[#F8FAFC] bg-[var(--color-primary)] rounded-lg p-2 mt-8">
-          Connect Wallet
-        </button>
+      
       </div>
     </section>
   );

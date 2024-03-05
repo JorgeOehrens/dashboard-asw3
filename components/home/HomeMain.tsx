@@ -5,8 +5,27 @@ import RecentTransactions from "./RecentTransactions";
 import TotalBalance from "./TotalBalance";
 import WalletAssets from "./WalletAssets";
 import WalletBalance from "./WalletBalance";
+import { useStateContext } from "@/context/index";
+import useTokenBalance from "@/lib/readBalanceTokens";
+import useTokenSelect from "@/lib/useToken";
+import { useEffect, useState } from 'react';
+
+
+const useIsClient = () => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  return isClient;
+};
 
 const HomeMain = () => {
+  const isClient = useIsClient();
+
+  const { balance } = useTokenBalance();
+  const  { token }  = useTokenSelect();
   return (
     <>
       <div className="w-full xl:w-8/12">
@@ -15,8 +34,11 @@ const HomeMain = () => {
             <p className="text-[24px] leading-[150%] text-[var(--color-gray-5)] dark:text-[var(--color-gray-3)]">
               Wallet Balance
             </p>
+            {isClient ? <h3 className="text-[32px] font-semibold leading-[120%] text-[var(--color-gray-7)] dark:text-white">{balance?.formatted}{token?.symbol} </h3> : <h3 className="text-[32px] font-semibold leading-[120%] text-[var(--color-gray-7)] dark:text-white">
+              Loading...
+</h3>}
             <h3 className="text-[32px] font-semibold leading-[120%] text-[var(--color-gray-7)] dark:text-white">
-              $1,208.73
+
             </h3>
             <p className="flex items-center text-[var(--color-primary-2)] dark:!text-[var(--color-primary-dark)] font-bold gap-1">
               <span className="material-symbols-outlined !text-base !text-[var(--color-primary-2)] dark:!text-[var(--color-primary-dark)]">

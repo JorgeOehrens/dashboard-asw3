@@ -1,14 +1,29 @@
+
 import Image from "next/image";
 import Link from "next/link";
 import avatar_photo from "/public/images/avatar_photo.png";
 import logo_icon from "/public/images/logo_icon.png";
 import React, {useContext} from 'react';
-
+import { ConnectButton } from '@rainbow-me/rainbowkit';
+import useTokenBalance from "@/lib/readBalanceTokens";
+import { useEffect, useState } from 'react';
+import useTokenSelect from "@/lib/useClient";
 type NavbarProps = {
   openSidBar: boolean;
   isOpen?: boolean;
   setIsOpen: (a: boolean) => void;
   setOpenSidBar: (a: boolean) => void;
+
+};
+
+const useIsClient = () => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  return isClient;
 };
 
 const NavBar = ({
@@ -16,7 +31,11 @@ const NavBar = ({
   setIsOpen,
   setOpenSidBar,
   openSidBar,
+
 }: NavbarProps) => {
+  const isClient = useIsClient();
+
+  const { balance } = useTokenBalance();
 
 
 
@@ -46,22 +65,16 @@ const NavBar = ({
               <Image src={avatar_photo} alt="avt" className="w-full" />
             </div>
             <div className="flex flex-col">
-              <h6 className="text-base font-bold">Wade Warren</h6>
+            {isClient ? <h6 className="text-base font-bold"></h6> : <h6>0x...</h6>}
               <div className="flex items-center gap-1 text-[#6F767E]">
-                <small>My Balance</small>
-                <small>$20,86,000</small>
+                {isClient ? <small>Balance: ${balance?.formatted}</small> : <small>Cargando balance...</small>}
+
               </div>
             </div>
           </Link>
           <div className="flex items-center gap-3 md:gap-6">
-          {/* { !currentAccount && (
-                        <button 
-                    type="button"
-                    onClick={connectWallet}
-                    className="flex flex-row justify-center items-center my-5 bg-[#2952e3] p-3 rounded-full cursor-pointer hover:bg-[#2546b]" >
-                       <p className="text-white text-base font-semibold">Connect Wallet</p>
-                    </button>
-                    )} */}
+                      <ConnectButton  />  
+
           </div>
         </div>
       </div>

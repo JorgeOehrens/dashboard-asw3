@@ -7,11 +7,13 @@ import NavBar from "./navBar/NavBar";
 import Preloader from "./preloader/Preloader";
 import SideBar from "./sideBar/SideBar";
 
+
 type LayoutProps = {
   children: React.ReactNode;
 };
 
 const Layout = ({ children }: LayoutProps) => {
+
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [showText, setShowText] = useState(true);
   const [openSidBar, setOpenSidBar] = useState(false);
@@ -56,6 +58,7 @@ const Layout = ({ children }: LayoutProps) => {
             isOpen={isOpen}
             openSidBar={openSidBar}
             setOpenSidBar={setOpenSidBar}
+
           />
 
           <section
