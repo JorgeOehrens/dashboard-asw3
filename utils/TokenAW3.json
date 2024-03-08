@@ -6,9 +6,9 @@
     {
       "inputs": [
         {
-          "internalType": "uint256",
-          "name": "initialSupply",
-          "type": "uint256"
+          "internalType": "contract USDTETHPriceQuery",
+          "name": "_usdEth",
+          "type": "address"
         }
       ],
       "stateMutability": "nonpayable",
@@ -414,6 +414,21 @@
             },
             {
               "internalType": "uint256",
+              "name": "tokens",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "eth_price_usd",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "token_price",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
               "name": "amount",
               "type": "uint256"
             },
@@ -552,7 +567,17 @@
         },
         {
           "internalType": "uint256",
-          "name": "amount",
+          "name": "tokensToMint",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "totalValueInWei",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "valuePerTokenInWei",
           "type": "uint256"
         }
       ],
@@ -719,6 +744,19 @@
         }
       ],
       "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "usdEth",
+      "outputs": [
+        {
+          "internalType": "contract USDTETHPriceQuery",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
       "type": "function"
     }
   ],

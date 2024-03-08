@@ -5,10 +5,11 @@ import RecentTransactions from "./RecentTransactions";
 import TotalBalance from "./TotalBalance";
 import WalletAssets from "./WalletAssets";
 import WalletBalance from "./WalletBalance";
-import { useStateContext } from "@/context/index";
 import useTokenBalance from "@/lib/readBalanceTokens";
 import useTokenSelect from "@/lib/useToken";
 import { useEffect, useState } from 'react';
+import walletBalanceETH from "@/utils/walletBalanceETH";
+import walletBalanceusd from "@/utils/walletBalanceUSD";
 
 
 const useIsClient = () => {
@@ -26,10 +27,42 @@ const HomeMain = () => {
 
   const { balance } = useTokenBalance();
   const  { token }  = useTokenSelect();
+  const [walletBalanceUSD, setWalletBalanceUSD] = useState(''); // Estado para almacenar el balance en USD
+
+  const [balanceWalletETH, setBalanceWalletETH] = useState('');
+
+  useEffect(() => {
+    const fetchBalances = async () => {
+      if (isClient) { // Solo intentamos cargar los balances si estamos en el lado del cliente
+        const ethBalance = await walletBalanceETH();
+        setBalanceWalletETH(ethBalance);
+
+        const usdBalance = await walletBalanceusd(); // Asumiendo que esta función devuelve el balance en USD
+        setWalletBalanceUSD(usdBalance); // Actualiza el estado con el balance en USD
+      }
+    };
+
+    fetchBalances();
+  }, [isClient]); // Este efecto depende de isClient para asegurarse de ejecutar en el lado del cliente
+
   return (
     <>
       <div className="w-full xl:w-8/12">
+      <div className="grid grid-cols-2 gap-4 mb-6">
+          {/* Wallet Balance Section */}
+          <WalletBalance 
+          balanceWalletETH={balanceWalletETH}
+          balanceWalletUSD={walletBalanceUSD}
+
+           />
+
+          {/* Earn Balance Section */}
+          <EarnBalance
+          
+          />
+        </div>
         <div className="bg-white dark:bg-[var(--color-gray-7)] rounded-lg shadow-[0px_1px_2px_rgba(0,0,0,0.2)]">
+          
           <div className="flex flex-col items-center justify-center gap-2 text-center relative -mb-14 z-10 pt-6">
             <p className="text-[24px] leading-[150%] text-[var(--color-gray-5)] dark:text-[var(--color-gray-3)]">
               Wallet Balance
@@ -48,16 +81,11 @@ const HomeMain = () => {
             </p>
           </div>
           {/* Area Chart Section */}
+
           <AreaChart />
         </div>
 
-        <div className="grid grid-cols-2 gap-4 mt-6">
-          {/* Wallet Balance Section */}
-          <WalletBalance />
 
-          {/* Earn Balance Section */}
-          <EarnBalance />
-        </div>
 
         {/* Wallet Assets Section */}
         <WalletAssets />
@@ -65,7 +93,7 @@ const HomeMain = () => {
 
       <div className="w-full xl:w-4/12">
         {/* Total Balance Section */}
-        <TotalBalance />
+        {/* <TotalBalance /> */}
 
         {/* Recent Transactions Section */}
         <RecentTransactions />

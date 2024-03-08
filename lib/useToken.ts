@@ -1,9 +1,9 @@
 import { useToken } from 'wagmi';
-import { contractAddress} from '../utils/constants';
+import { TOKEN_ADDRESS} from '../utils/constants';
 
 function useTokenSelect() {
   const { data, isError, isLoading } = useToken({
-    address: contractAddress, // Dirección del token
+    address: TOKEN_ADDRESS, // Dirección del token
   });
 
   // Aquí puedes acceder a data.name, data.symbol, etc.

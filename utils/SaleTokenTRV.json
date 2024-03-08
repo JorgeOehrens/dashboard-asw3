@@ -6,14 +6,14 @@
     {
       "inputs": [
         {
-          "internalType": "contract TokenAW3",
-          "name": "_tokenContract",
+          "internalType": "contract USDTETHPriceQuery",
+          "name": "_usdEth",
           "type": "address"
         },
         {
-          "internalType": "uint256",
-          "name": "_tokenPrice",
-          "type": "uint256"
+          "internalType": "contract TokenAW3",
+          "name": "_tokenContract",
+          "type": "address"
         }
       ],
       "stateMutability": "nonpayable",
@@ -53,6 +53,19 @@
     },
     {
       "inputs": [],
+      "name": "getTokenSalePriceInWei",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
       "name": "tokenContract",
       "outputs": [
         {
@@ -66,7 +79,7 @@
     },
     {
       "inputs": [],
-      "name": "tokenPrice",
+      "name": "tokensSold",
       "outputs": [
         {
           "internalType": "uint256",
@@ -79,12 +92,12 @@
     },
     {
       "inputs": [],
-      "name": "tokensSold",
+      "name": "usdEth",
       "outputs": [
         {
-          "internalType": "uint256",
+          "internalType": "contract USDTETHPriceQuery",
           "name": "",
-          "type": "uint256"
+          "type": "address"
         }
       ],
       "stateMutability": "view",

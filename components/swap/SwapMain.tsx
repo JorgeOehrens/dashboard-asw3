@@ -5,6 +5,8 @@ import Select from "../common/Select";
 import btc from "/public/images/icon/btc.png";
 import doge from "/public/images/icon/doge.png";
 import ethereum from "/public/images/icon/ethereum.png";
+import BuyToken from "@/utils/buyToken";
+
 const useIsClient = () => {
   const [isClient, setIsClient] = useState(false);
 
@@ -24,7 +26,14 @@ const SwapMain = () => {
   const handleSwap = () => {
     setSwap(!swap);
   };
-
+  const [nToken, setNToken] = useState(""); // Estado para manejar la entrada de número de tokens
+  const handleBuyToken = async () => {
+    if(isClient) { // Si el cliente está conectado, intenta comprar tokens
+      await BuyToken(nToken); // Llama a tu función BuyToken con el número de tokens
+    } else {
+      console.log("---");
+    }
+  };
   return (
     <section className="w-full h-[77vh] sm:h-[100vh]">
       <div className="max-w-[504px] m-auto border dark:border-[#3C4145] py-5 px-4 sm:px-8 bg-white dark:bg-[var(--color-gray-7)] rounded-lg shadow-[0px_1px_1px_rgba(0,0,0,0.25)]">
@@ -58,11 +67,13 @@ const SwapMain = () => {
               <Select data={coins} />
             </div>
             <div className="flex flex-1 flex-col items-end border-l dark:border-[#3C4145]">
-              <input
-                type={"text"}
-                className="w-full text-lg leading-[150%] text-right outline-none bg-transparent text-[var(--color-gray-5)] dark:text-white placeholder:text-[var(--color-gray-5)] dark:placeholder:text-[var(--color-gray-3)]"
-                placeholder="0.0"
-              />
+            <input
+            type={"text"}
+            className="w-full text-lg leading-[150%] text-right outline-none bg-transparent text-[var(--color-gray-5)] dark:text-white placeholder:text-[var(--color-gray-5)] dark:placeholder:text-[var(--color-gray-3)]"
+            placeholder="0.0"
+            value={nToken}
+            onChange={(e) => setNToken(e.target.value)} // Actualiza el estado con el valor del input
+          />
               <span className="text-base leading-[150%] text-right outline-none text-[var(--color-gray-4)]">
                 $0.0
               </span>
@@ -71,8 +82,9 @@ const SwapMain = () => {
         </div>
 
         
-        { isClient ?          <button className="w-full text-center text-lg leading-[150%] text-[#F8FAFC] bg-[var(--color-primary-4)] rounded-lg p-2 mt-8">
-         Buy
+        {isClient ? 
+        <button onClick={handleBuyToken} className="w-full text-center text-lg leading-[150%] text-[#F8FAFC] bg-[var(--color-primary-4)] rounded-lg p-2 mt-8">
+                 Buy
         </button>     :         <button className="w-full text-center text-lg leading-[150%] text-[#F8FAFC] bg-[var(--color-primary-4)] rounded-lg p-2 mt-8">
           Connect Wallet
         </button>}
