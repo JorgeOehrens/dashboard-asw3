@@ -10,6 +10,7 @@ import useTokenSelect from "@/lib/useToken";
 import { useEffect, useState } from 'react';
 import walletBalanceETH from "@/utils/walletBalanceETH";
 import walletBalanceusd from "@/utils/walletBalanceUSD";
+import { useAccount } from 'wagmi';
 
 
 const useIsClient = () => {
@@ -24,6 +25,7 @@ const useIsClient = () => {
 
 const HomeMain = () => {
   const isClient = useIsClient();
+  const { isConnected } = useAccount();
 
   const { balance } = useTokenBalance();
   const  { token }  = useTokenSelect();
@@ -67,7 +69,7 @@ const HomeMain = () => {
             <p className="text-[24px] leading-[150%] text-[var(--color-gray-5)] dark:text-[var(--color-gray-3)]">
               Wallet Balance
             </p>
-            {isClient ? <h3 className="text-[32px] font-semibold leading-[120%] text-[var(--color-gray-7)] dark:text-white">{balance?.formatted}{token?.symbol} </h3> : <h3 className="text-[32px] font-semibold leading-[120%] text-[var(--color-gray-7)] dark:text-white">
+            {isConnected ? <h3 className="text-[32px] font-semibold leading-[120%] text-[var(--color-gray-7)] dark:text-white">{balance?.formatted}{token?.symbol} </h3> : <h3 className="text-[32px] font-semibold leading-[120%] text-[var(--color-gray-7)] dark:text-white">
               Loading...
 </h3>}
             <h3 className="text-[32px] font-semibold leading-[120%] text-[var(--color-gray-7)] dark:text-white">
