@@ -30,7 +30,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <ThemeProvider
             attribute="class"
             enableSystem={false}
-            defaultTheme="dark"
+            defaultTheme="light"
           >
             <Component {...pageProps} />
           </ThemeProvider>
@@ -55,7 +55,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <ThemeProvider
           attribute="class"
           enableSystem={false}
-          defaultTheme="dark"
+          defaultTheme="light"
         >
           <Layout>
 
