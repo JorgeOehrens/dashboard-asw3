@@ -1,5 +1,4 @@
 import { useAccount, useBalance } from 'wagmi';
-import {contractABI, contractAddress} from '@/utils/constants';
 import wagmiClient from "@/lib/wagmiClient";
 
 export const useClient = () => {

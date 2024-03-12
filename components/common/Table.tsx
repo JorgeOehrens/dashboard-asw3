@@ -45,7 +45,6 @@ const Table: React.FC<Props> = ({ columns, data }) => {
           prepareRow(row);
           const { coin, coinSrt, icon } = row.values.asset;
           const { balence, coinBalance } = row.values.balance;
-          const { rate, incDecIcon } = row.values.priceChange;
 
           return (
             <tr {...row.getRowProps()} key={i}>
@@ -71,23 +70,7 @@ const Table: React.FC<Props> = ({ columns, data }) => {
               <td className="min-w-[120px] py-2 md:py-3 whitespace-nowrap text-sm leading-[150%]">
                 ${row.values.price}
               </td>
-              <td className="min-w-[120px] py-2 md:py-3 whitespace-nowrap">
-                <div
-                  className={`flex items-center gap-2 text-sm leading-[150%] ${
-                    rate <= 6.99
-                      ? "text-[var(--color-primary-3)]"
-                      : "text-[var(--color-primary-2)] dark:text-[var(--color-primary-dark)]"
-                  }`}
-                >
-                  <span className="material-symbols-outlined !text-xs !text-inherit">
-                    {incDecIcon}
-                  </span>
-                  <span>{rate}%</span>
-                </div>
-              </td>
-              <td className="min-w-[120px] py-2 md:py-3 whitespace-nowrap text-sm leading-[150%]">
-                {row.values.allocation}%
-              </td>
+
             </tr>
           );
         })}

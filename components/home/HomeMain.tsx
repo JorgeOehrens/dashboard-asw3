@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react';
 import walletBalanceETH from "@/utils/walletBalanceETH";
 import walletBalanceusd from "@/utils/walletBalanceUSD";
 import { useAccount } from 'wagmi';
-
+import tokenBalance from "@/utils/tokenBalance";
 
 const useIsClient = () => {
   const [isClient, setIsClient] = useState(false);
@@ -29,6 +29,9 @@ const HomeMain = () => {
 
   const { balance } = useTokenBalance();
   const  { token }  = useTokenSelect();
+  const [tokenBalance2, settokenBalance] = useState(''); // Estado para almacenar el balance en USD
+
+
   const [walletBalanceUSD, setWalletBalanceUSD] = useState(''); // Estado para almacenar el balance en USD
 
   const [balanceWalletETH, setBalanceWalletETH] = useState('');
@@ -39,6 +42,9 @@ const HomeMain = () => {
         const ethBalance = await walletBalanceETH();
         setBalanceWalletETH(ethBalance);
 
+        const tokenBalance1 = await tokenBalance();
+        settokenBalance(tokenBalance1);
+        
         const usdBalance = await walletBalanceusd(); // Asumiendo que esta función devuelve el balance en USD
         setWalletBalanceUSD(usdBalance); // Actualiza el estado con el balance en USD
       }
@@ -69,7 +75,7 @@ const HomeMain = () => {
             <p className="text-[24px] leading-[150%] text-[var(--color-gray-5)] dark:text-[var(--color-gray-3)]">
               Wallet Balance
             </p>
-            {isConnected ? <h3 className="text-[32px] font-semibold leading-[120%] text-[var(--color-gray-7)] dark:text-white">{balance?.formatted}{token?.symbol} </h3> : <h3 className="text-[32px] font-semibold leading-[120%] text-[var(--color-gray-7)] dark:text-white">
+            {isConnected ? <h3 className="text-[32px] font-semibold leading-[120%] text-[var(--color-gray-7)] dark:text-white">$ {walletBalanceUSD} </h3> : <h3 className="text-[32px] font-semibold leading-[120%] text-[var(--color-gray-7)] dark:text-white">
               Loading...
 </h3>}
             <h3 className="text-[32px] font-semibold leading-[120%] text-[var(--color-gray-7)] dark:text-white">
@@ -90,7 +96,11 @@ const HomeMain = () => {
 
 
         {/* Wallet Assets Section */}
-        <WalletAssets />
+        <WalletAssets 
+        balanceTRV = {tokenBalance2}
+        balanceWalletETH={balanceWalletETH}
+        balanceWalletUSD={walletBalanceUSD}
+        />
       </div>
 
       <div className="w-full xl:w-4/12">
