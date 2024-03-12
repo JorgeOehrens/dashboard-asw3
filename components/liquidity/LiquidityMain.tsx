@@ -17,8 +17,7 @@ const useIsClient = () => {
 };
 
 const coinsLiquidity = [
-  { id: 1, name: "ETH", icon: btc },
-  { id: 2, name: "USD", icon: ethereum },
+  { id: 2, name: "ETH", icon: ethereum },
 ];
 
 const LiquidityMain = () => {

@@ -2,22 +2,28 @@ import { ApexOptions } from "apexcharts";
 import { useTheme } from "next-themes";
 import dynamic from "next/dynamic";
 import { useMediaQuery } from "react-responsive";
+import { Transaction } from "@/utils/types";
 
 const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 type PropsType = {
+  transactions: Transaction[
+    
+  ];
   options?: ApexOptions;
 };
 
-const AreaChart = ({ options }: PropsType) => {
+const AreaChart = ({ transactions, options }: PropsType) => {
   const responsive = useMediaQuery({
     query: "(min-width: 1025px)",
   });
-  const { theme, setTheme } = useTheme();
+  const { theme } = useTheme();
 
-  function numberWithCommas(x: number) {
-    return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-  }
+  // Calcular el total acumulado de los montos de las transacciones
+  const totalAmount = transactions.reduce(
+    (total, transaction) => total + parseFloat(transaction.amount._hex),
+    0
+  );
 
   let fillColors = [];
   let strokeColors = [];
@@ -32,13 +38,13 @@ const AreaChart = ({ options }: PropsType) => {
     ? (strokeColors = ["#8E59FF"])
     : (strokeColors = ["#448aff"]);
 
-  // const settings = {
   const series = [
     {
       name: "",
-      data: [2, 1, 2, 2.6, 2, 3.8],
+      data: transactions.map((transaction) => parseFloat(transaction.amount._hex)),
     },
   ];
+
   const defaultOptions: ApexOptions = {
     fill: {
       type: "gradient",
@@ -68,7 +74,7 @@ const AreaChart = ({ options }: PropsType) => {
     },
     xaxis: {
       type: "category",
-      categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+      categories: transactions.map((transaction, index) => index.toString()),
       axisTicks: {
         show: false,
       },
@@ -83,7 +89,7 @@ const AreaChart = ({ options }: PropsType) => {
       show: true,
       tickAmount: 4,
       min: 0,
-      max: 4,
+      max: totalAmount,
       labels: {
         formatter: function (value: any) {
           return `${value}M`;
@@ -121,14 +127,11 @@ const AreaChart = ({ options }: PropsType) => {
     },
     tooltip: {
       enabled: true,
-      // theme: false,
       style: {
-        //   fontSize: "24px",
         fontFamily: undefined,
       },
       x: {
         show: true,
-        //   format: "MMMM",
         formatter: function (value: any, timestamp: any) {
           return "February 5, 2023 1:22 PM";
         },
@@ -150,7 +153,7 @@ const AreaChart = ({ options }: PropsType) => {
       },
     },
   };
-  // };
+
   const chartOptions = options ?? defaultOptions;
 
   return (
@@ -159,7 +162,6 @@ const AreaChart = ({ options }: PropsType) => {
       options={chartOptions}
       series={series}
       height={responsive ? 582 : 282}
-      //   height={282}
     />
   );
 };

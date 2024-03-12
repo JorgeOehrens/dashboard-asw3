@@ -1,6 +1,5 @@
 import BalanceCard from "../cards/BalanceCard";
 import RadialBar from "../charts/RadialBar";
-import walletBalance from "@/utils/walletBalanceETH";
 
 type PropsType = {
   balanceWalletETH: string;

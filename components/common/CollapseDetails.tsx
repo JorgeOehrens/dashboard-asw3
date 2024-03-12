@@ -1,8 +1,19 @@
 import Image from "next/image";
 import btc from "/public/images/icon/btc.png";
-import tenx from "/public/images/icon/tenx.png";
-
-const CollapseDetails = () => {
+import tenx from "/public/images/icon/ethereum.png";
+import React from "react";
+import { Transaction } from "@/utils/types";
+interface Props {
+  transaction: Transaction;
+}
+const convertWeiToEther = (hexValue: string) => {
+  // Convertir el valor hex a número entero
+  const weiValue = parseInt(hexValue, 16);
+  // Convertir de wei a ether (1 ether = 10^18 wei)
+  const etherValue = weiValue / 10**18;
+  return etherValue;
+};
+const CollapseDetails: React.FC<Props> = ({ transaction }) => {
   return (
     <div className="clss">
       <div className="flex flex-col gap-4 py-5 mt-5 border border-x-0 border-[rgba(111,118,126,0.18)]">
@@ -27,13 +38,10 @@ const CollapseDetails = () => {
             </span>
           </div>
         </div>
-        <div className="flex items-center justify-between text-sm text-[var(--color-gray-4)]">
-          <span className="leading-[150%]">Order Route</span>
-          <span className="leading-[150%]">Osmosis</span>
-        </div>
+
         <div className="flex items-center justify-between text-sm text-[var(--color-gray-4)]">
           <span className="leading-[150%]">Transaction Type</span>
-          <span className="leading-[150%]">Trade</span>
+          <span className="leading-[150%]">Buy tokens</span>
         </div>
       </div>
       <div className="flex flex-col gap-5 mt-5">
@@ -49,7 +57,7 @@ const CollapseDetails = () => {
               From
             </span>
             <span className="leading-[150%] text-[var(--color-primary)]">
-              cdy122..ddfd
+              {transaction[0]}
             </span>
           </div>
 
@@ -58,7 +66,7 @@ const CollapseDetails = () => {
               To
             </span>
             <span className="leading-[150%] text-[var(--color-primary)]">
-              cdy122..dfdfsd
+            {transaction[1]}
             </span>
           </div>
 
@@ -69,7 +77,7 @@ const CollapseDetails = () => {
             <div className="flex items-center gap-2">
               <Image src={btc} alt="btc" className="flex-shrink-0 w-3 h-3" />
               <span className="leading-[150%] text-[var(--color-gray-7)] dark:text-[var(--color-gray-2)]">
-                1 BTC
+              {convertWeiToEther(transaction.tokens._hex)} TRV
               </span>
             </div>
           </div>
@@ -81,7 +89,7 @@ const CollapseDetails = () => {
               From
             </span>
             <span className="leading-[150%] text-[var(--color-primary)]">
-              cdy122..ddfd
+            {transaction[1]}
             </span>
           </div>
 
@@ -90,7 +98,7 @@ const CollapseDetails = () => {
               To
             </span>
             <span className="leading-[150%] text-[var(--color-primary)]">
-              cdy122..dfdfsd
+            {transaction[0]}
             </span>
           </div>
 
@@ -101,7 +109,7 @@ const CollapseDetails = () => {
             <div className="flex items-center gap-2">
               <Image src={tenx} alt="btc" className="flex-shrink-0 w-3 h-3" />
               <span className="leading-[150%] text-[var(--color-gray-7)] dark:text-[var(--color-gray-2)]">
-                1 BTC
+              {convertWeiToEther(transaction.amount._hex)} ETH
               </span>
             </div>
           </div>

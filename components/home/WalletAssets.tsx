@@ -19,15 +19,19 @@ type PropsType = {
 
 };
 const WalletAssets = ({balanceTRV,balanceWalletETH, balanceWalletUSD  } : PropsType) => {
+  
+  const balanceWusd= balanceWalletUSD;
+  const balancetoken= balanceTRV;
+
   const data = useMemo(
     () => [
       {
         asset: { coin: "Venture Capilta", coinSrt: "TRV", icon: doge },
-        balance: { balence: balanceWalletUSD, coinBalance: balanceTRV  },
+        balance: { balence: balanceWusd, coinBalance: balancetoken  },
         price: 1900,
       }
     ],
-    []
+    [balanceWusd, balancetoken] // Incluimos las dependencias aquí
   );
 
   const columns = useMemo(

@@ -12,6 +12,7 @@ import walletBalanceETH from "@/utils/walletBalanceETH";
 import walletBalanceusd from "@/utils/walletBalanceUSD";
 import { useAccount } from 'wagmi';
 import tokenBalance from "@/utils/tokenBalance";
+import getAllTransactions from "@/utils/transactionsToken";
 
 const useIsClient = () => {
   const [isClient, setIsClient] = useState(false);
@@ -24,6 +25,7 @@ const useIsClient = () => {
 };
 
 const HomeMain = () => {
+  const [transactions, setTransactions] = useState<any[]>([]);
   const isClient = useIsClient();
   const { isConnected } = useAccount();
 
@@ -42,6 +44,8 @@ const HomeMain = () => {
         const ethBalance = await walletBalanceETH();
         setBalanceWalletETH(ethBalance);
 
+        const transactionsData = await getAllTransactions();
+        setTransactions(transactionsData);
         const tokenBalance1 = await tokenBalance();
         settokenBalance(tokenBalance1);
         
@@ -75,9 +79,8 @@ const HomeMain = () => {
             <p className="text-[24px] leading-[150%] text-[var(--color-gray-5)] dark:text-[var(--color-gray-3)]">
               Wallet Balance
             </p>
-            {isConnected ? <h3 className="text-[32px] font-semibold leading-[120%] text-[var(--color-gray-7)] dark:text-white">$ {walletBalanceUSD} </h3> : <h3 className="text-[32px] font-semibold leading-[120%] text-[var(--color-gray-7)] dark:text-white">
-              Loading...
-</h3>}
+            {isClient ? <h3 className="text-[32px] font-semibold leading-[120%] text-[var(--color-gray-7)] dark:text-white">$ {walletBalanceUSD} </h3> : <h3 className="text-[32px] font-semibold leading-[120%] text-[var(--color-gray-7)] dark:text-white">
+              Loading...</h3>}
             <h3 className="text-[32px] font-semibold leading-[120%] text-[var(--color-gray-7)] dark:text-white">
 
             </h3>
@@ -90,7 +93,7 @@ const HomeMain = () => {
           </div>
           {/* Area Chart Section */}
 
-          <AreaChart />
+          <AreaChart transactions={transactions}/>
         </div>
 
 
@@ -108,8 +111,12 @@ const HomeMain = () => {
         {/* <TotalBalance /> */}
 
         {/* Recent Transactions Section */}
-        <RecentTransactions />
+        <RecentTransactions
+        
+        />
+    <div>
 
+    </div>
       </div>
     </>
   );

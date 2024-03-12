@@ -1,27 +1,23 @@
-import { ethers } from "ethers";
 import ChechIfWalletConnected from "@/lib/walletConnected";
 import connectingTOKENContract from "@/lib/useTokenContract";
 
-const tokenBalance = async () => {
+const getAllTransactions = async () => {
     const account = await ChechIfWalletConnected();
     const TOKEN_CONTRACT = await connectingTOKENContract();
-
-    let tokenBalance;
 
     if (!TOKEN_CONTRACT) {
         throw new Error("Error al conectar con el contrato de tokens");
     }
 
+    let transactions;
+
     if (account) {
-        tokenBalance = await TOKEN_CONTRACT.balanceOf(account);
+        transactions = await TOKEN_CONTRACT.getAllTransactions();
     } else {
-        tokenBalance = ethers.BigNumber.from(0);
+        transactions = [];
     }
 
-    const tokenInEth = ethers.utils.formatEther(tokenBalance).toString();
-
-
-    return tokenInEth;
+    return transactions;
 };
 
-export default tokenBalance;
+export default getAllTransactions;
