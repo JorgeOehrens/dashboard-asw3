@@ -6,7 +6,7 @@ import {
   } from "../utils/constants";
 // Define un provider. Por ejemplo, usando ethers con un provider de Infura.
 
-const fetchTokenContract = (signerOrProvider: ethers.Signer | ethers.providers.Provider) =>
+const fetchTokenContract = async (signerOrProvider: ethers.Signer | ethers.providers.Provider) =>
     new ethers.Contract(TOKEN_ADDRESS, TOKEN_ABI, signerOrProvider);
 
 const connectingTOKENContract = async () => {

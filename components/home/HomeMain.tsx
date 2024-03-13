@@ -1,4 +1,3 @@
-import AreaChart from "../charts/AreaChart";
 import EarnBalance from "./EarnBalance";
 import LiquidityPools from "./LiquidityPools";
 import RecentTransactions from "./RecentTransactions";
@@ -13,7 +12,7 @@ import walletBalanceusd from "@/utils/walletBalanceUSD";
 import { useAccount } from 'wagmi';
 import tokenBalance from "@/utils/tokenBalance";
 import getAllTransactions from "@/utils/transactionsToken";
-
+import getAllTransactionsData from "@/utils/transactionsToken2";
 const useIsClient = () => {
   const [isClient, setIsClient] = useState(false);
 
@@ -25,12 +24,12 @@ const useIsClient = () => {
 };
 
 const HomeMain = () => {
-  const [transactions, setTransactions] = useState<any[]>([]);
-  const isClient = useIsClient();
-  const { isConnected } = useAccount();
 
-  const { balance } = useTokenBalance();
-  const  { token }  = useTokenSelect();
+  const [transactions, setTransactions] = useState<any[]>([]);
+  const [transactions2, setTransactions2] = useState<any[]>([]);
+
+  const isClient = useIsClient();
+
   const [tokenBalance2, settokenBalance] = useState(''); // Estado para almacenar el balance en USD
 
 
@@ -46,6 +45,11 @@ const HomeMain = () => {
 
         const transactionsData = await getAllTransactions();
         setTransactions(transactionsData);
+
+        
+        const transactionsData2 = await getAllTransactionsData();
+        setTransactions2(transactions2);
+
         const tokenBalance1 = await tokenBalance();
         settokenBalance(tokenBalance1);
         
@@ -93,7 +97,7 @@ const HomeMain = () => {
           </div>
           {/* Area Chart Section */}
 
-          <AreaChart transactions={transactions}/>
+          {/* <AreaChart transactions={transactions}/> */}
         </div>
 
 
@@ -104,6 +108,12 @@ const HomeMain = () => {
         balanceWalletETH={balanceWalletETH}
         balanceWalletUSD={walletBalanceUSD}
         />
+          <div className="w-full xl:w-8/12">
+    {/* Otros componentes y secciones */}
+
+    {/* Sección de Transacciones */}
+
+  </div>
       </div>
 
       <div className="w-full xl:w-4/12">

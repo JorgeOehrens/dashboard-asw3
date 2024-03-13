@@ -2,7 +2,8 @@ import Link from "next/link";
 import RecentTransactionItms from "./RecentTransactionItms";
 import getAllTransactions from "@/utils/transactionsToken";
 import { useEffect, useState } from 'react';
-import { Transaction, BigNumberObject } from "@/utils/types";
+import { Transaction } from "@/utils/types";
+import getAllTransactionsData from "@/utils/transactionsToken2";
 
 const useIsClient = () => {
   const [isClient, setIsClient] = useState(false);
@@ -22,6 +23,8 @@ const convertWeiToEther = (wei: string) => {
 
 const RecentTransactions = () => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const [transactions2, setTransactions2] = useState<Transaction[]>([]);
+
   const isClient = useIsClient();
 
   useEffect(() => {
@@ -30,6 +33,10 @@ const RecentTransactions = () => {
         try {
           const transactionsData = await getAllTransactions();
           setTransactions(transactionsData);
+          
+          const transactionsData2 = await getAllTransactionsData();
+          setTransactions2(transactionsData2);
+  
         } catch (error) {
           console.error('Error fetching transactions:', error);
         }
@@ -53,7 +60,7 @@ const RecentTransactions = () => {
   
 
       {/* Aquí podrías pasar las transacciones a RecentTransactionItms si necesitas mostrarlas de otra manera */}
-      <RecentTransactionItms transactions={transactions} />
+      <RecentTransactionItms transactions={transactions2} />
     </div>
   );
 };

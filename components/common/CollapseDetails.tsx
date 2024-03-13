@@ -57,7 +57,7 @@ const CollapseDetails: React.FC<Props> = ({ transaction }) => {
               From
             </span>
             <span className="leading-[150%] text-[var(--color-primary)]">
-              {transaction[0]}
+              {transaction.from}
             </span>
           </div>
 
@@ -66,7 +66,7 @@ const CollapseDetails: React.FC<Props> = ({ transaction }) => {
               To
             </span>
             <span className="leading-[150%] text-[var(--color-primary)]">
-            {transaction[1]}
+            {transaction.to}
             </span>
           </div>
 
@@ -77,7 +77,7 @@ const CollapseDetails: React.FC<Props> = ({ transaction }) => {
             <div className="flex items-center gap-2">
               <Image src={btc} alt="btc" className="flex-shrink-0 w-3 h-3" />
               <span className="leading-[150%] text-[var(--color-gray-7)] dark:text-[var(--color-gray-2)]">
-              {convertWeiToEther(transaction.tokens._hex)} TRV
+              {convertWeiToEther(transaction.tokens)} TRV
               </span>
             </div>
           </div>
@@ -89,7 +89,7 @@ const CollapseDetails: React.FC<Props> = ({ transaction }) => {
               From
             </span>
             <span className="leading-[150%] text-[var(--color-primary)]">
-            {transaction[1]}
+            {transaction.to}
             </span>
           </div>
 
@@ -98,7 +98,7 @@ const CollapseDetails: React.FC<Props> = ({ transaction }) => {
               To
             </span>
             <span className="leading-[150%] text-[var(--color-primary)]">
-            {transaction[0]}
+            {transaction.from}
             </span>
           </div>
 
@@ -109,7 +109,7 @@ const CollapseDetails: React.FC<Props> = ({ transaction }) => {
             <div className="flex items-center gap-2">
               <Image src={tenx} alt="btc" className="flex-shrink-0 w-3 h-3" />
               <span className="leading-[150%] text-[var(--color-gray-7)] dark:text-[var(--color-gray-2)]">
-              {convertWeiToEther(transaction.amount._hex)} ETH
+              {convertWeiToEther(transaction.amount)} ETH
               </span>
             </div>
           </div>

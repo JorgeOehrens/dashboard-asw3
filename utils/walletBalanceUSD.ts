@@ -18,9 +18,13 @@ const walletBalanceUSD = async () => {
     // Realiza la operación aritmética después de convertir walletETH a un número
     const amountUSD = parseFloat(usdPerEth) * walletETH;
 
-    console.log('USD per ETH:', amountUSD);
+    // Usar Math.floor para redondear hacia abajo y eliminar decimales, luego convertir a string si es necesario
+    const amountUSDNoDecimals = Math.floor(amountUSD);
 
-    return amountUSD.toString();
+    console.log('USD per ETH:', amountUSDNoDecimals);
+
+    return amountUSDNoDecimals.toString();
 };
 
 export default walletBalanceUSD;
+ 
