@@ -73,7 +73,7 @@ const TransactionItems = ({ transactions }: { transactions: Transaction[] }) => 
                   </h6>
                 </div>
                 <p className="text-xs leading-[150%] text-[var(--color-gray-4)]">
-                  $: {transaction.token_price}
+                  {transaction.token_price} ETH x 1 token
                 </p>
               </div>
 
