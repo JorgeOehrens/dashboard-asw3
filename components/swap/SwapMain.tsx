@@ -6,9 +6,12 @@ import btc from "/public/images/asset_digital.png";
 import doge from "/public/images/icon/doge.png";
 import ethereum from "/public/images/icon/ethereum.png";
 import BuyToken from "@/utils/buyToken";
+import tokenPriceEth from "@/utils/tokenPrice";
+import ethPriceUsd from "@/utils/ethPriceUsd";
 
 const useIsClient = () => {
   const [isClient, setIsClient] = useState(false);
+
 
   useEffect(() => {
     setIsClient(true);
@@ -26,7 +29,31 @@ const SwapMain = () => {
   const handleSwap = () => {
     setSwap(!swap);
   };
+
+  const [tokenPrice, settokenPrice] = useState(''); // Estado para almacenar el balance en USD
+  const [ethPrice, setethPrice] = useState(''); // Estado para almacenar el balance en USD
+  const [ethToPay, setEthToPay] = useState('0'); // Nuevo estado para almacenar ETH a pagar
+
+  useEffect(() => {
+    const fetchBalances = async () => {
+      if (isClient) { // Solo intentamos cargar los balances si estamos en el lado del cliente
+
+
+        
+        const ethPrice1 = await ethPriceUsd();
+        setethPrice(ethPrice1);
+
+        const tokenBalance1 = await tokenPriceEth();
+        settokenPrice(tokenBalance1);
+        
+      }
+    };
+
+    fetchBalances();
+  }, [isClient]); 
+
   const [nToken, setNToken] = useState(""); // Estado para manejar la entrada de número de tokens
+  
   const handleBuyToken = async () => {
     if(isClient) { // Si el cliente está conectado, intenta comprar tokens
       await BuyToken(nToken); // Llama a tu función BuyToken con el número de tokens
@@ -74,11 +101,72 @@ const SwapMain = () => {
             value={nToken}
             onChange={(e) => setNToken(e.target.value)} // Actualiza el estado con el valor del input
           />
-              <span className="text-base leading-[150%] text-right outline-none text-[var(--color-gray-4)]">
+              <span className="price_in_usd text-base leading-[150%] text-right outline-none text-[var(--color-gray-4)]">
                 $0.0
               </span>
             </div>
           </div>
+
+
+        </div>
+        <div className="flex flex-col gap-3 mt-3">
+          <p className="flex items-center justify-between text-sm leading-[150%]">
+            <span className="text-[var(--color-gray-4)] dark:text-[var(--color-gray-3)]">
+              Price
+            </span>
+            <span className="text-[var(--color-gray-5)] dark:text-[var(--color-gray-2)]">
+            {tokenPrice} ETH
+            </span>
+          </p>
+           <p className="flex items-center justify-between text-sm leading-[150%]">
+            <span className="text-[var(--color-gray-4)] dark:text-[var(--color-gray-3)]">
+              Eth to payy 
+            </span>
+            <span className="eth-to-pay text-[var(--color-gray-5)] dark:text-[var(--color-gray-2)]">
+              4,685,918.19 {ethPrice} ETH
+            </span>
+          </p>
+          <p className="flex items-center justify-between text-sm leading-[150%]">
+            <span className="text-[var(--color-gray-4)] dark:text-[var(--color-gray-3)]">
+              USD conversion
+            </span>
+            <span className="eth-to-pay text-[var(--color-gray-5)] dark:text-[var(--color-gray-2)]">
+              $7,385.91 USD
+            </span>
+          </p>
+          <p className="flex items-center justify-between text-sm leading-[150%]">
+            <span className="text-[var(--color-gray-4)] dark:text-[var(--color-gray-3)]">
+              Earn balance one year
+            </span>
+            <span className="eth-to-pay text-[var(--color-gray-5)] dark:text-[var(--color-gray-2)]">
+              $700 USD
+            </span>
+          </p>
+          <p className="flex items-center justify-between text-sm leading-[150%]">
+            <span className="text-[var(--color-gray-4)] dark:text-[var(--color-gray-3)]">
+              ETH Price
+            </span>
+            <span className="eth-to-pay text-[var(--color-gray-5)] dark:text-[var(--color-gray-2)]">
+              $ {ethPrice} USD
+            </span>
+          </p>
+          {/*
+          <p className="flex items-center justify-between text-sm leading-[150%]">
+            <span className="text-[var(--color-gray-4)] dark:text-[var(--color-gray-3)]">
+              Pool liquidity (ETH)
+            </span>
+            <span className="text-[var(--color-gray-5)] dark:text-[var(--color-gray-2)]">
+              58,982.95 ETH
+            </span>
+          </p>
+          <p className="flex items-center justify-between text-sm leading-[150%]">
+            <span className="text-[var(--color-gray-4)] dark:text-[var(--color-gray-3)]">
+              LP supply
+            </span>
+            <span className="text-[var(--color-gray-5)] dark:text-[var(--color-gray-2)]">
+              1,532,352.00 LP
+            </span>
+          </p> */}
         </div>
 
         
