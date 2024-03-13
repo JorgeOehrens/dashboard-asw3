@@ -1,5 +1,6 @@
 import Image from "next/image";
 import eth from "@/public/images/icon/ethereum.png";
+import aw3 from "/public/images/asset_digital_sm2.png";;
 
 type PropsType = {
   title: string;
@@ -25,18 +26,20 @@ const BalanceCard = ({ title, balance,balance_usd, children }: PropsType) => {
 
           </h4>
           <div className="flex items-center justify-center gap-1">
-                  <div className="flex items-center">
-                    <Image src={eth} alt="icon 1" className="flex-shrink-0" />
+                <div className="flex items-center ">
+                  <Image src={aw3} alt="icon 1" className="flex-shrink-0"  />
                     <Image
                       src={eth}
                       alt="icon 1"
                       className="-ml-4 flex-shrink-0"
                     />
                   </div>
-                  <h6 className="text-base leading-[150%] font-semibold dark:text-white">
-                  {balance} ETH
+                  <h6 className="text-base leading-[150%] font-semibold dark:text-white ">
+                     
+                    {balance} ETH
                   </h6>
                 </div>
+                
 
         </div>
       </div>

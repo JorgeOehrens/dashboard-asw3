@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import logo from "/public/images/logo.png";
-import logo_icon from "/public/images/logo_icon.png";
+import logo_icon from "/public/images/asset_digital.png";
 
 const SideBar = ({ showText, setShowText, openSidBar, setOpenSidBar }: any) => {
   const [enabled, setEnabled] = useState(false);

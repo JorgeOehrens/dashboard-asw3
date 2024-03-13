@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import Table from "../common/Table";
 import binance from "/public/images/icon/binance.png";
 import btc from "/public/images/icon/btc.png";
-import doge from "/public/images/icon/doge.png";
+import doge from "/public/images/asset_digital.png";;
 import ethereum from "/public/images/icon/ethereum.png";
 import litecoin from "/public/images/icon/litecoin.png";
 import loopring from "/public/images/icon/loopring.png";
@@ -33,6 +33,7 @@ const WalletAssets = ({balanceTRV,balanceWalletETH, balanceWalletUSD  } : PropsT
     ],
     [balanceWusd, balancetoken] // Incluimos las dependencias aquí
   );
+  
 
   const columns = useMemo(
     () => [

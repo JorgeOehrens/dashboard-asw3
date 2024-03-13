@@ -2,6 +2,8 @@ import Image from "next/image";
 import btc from "/public/images/icon/btc.png";
 import tenx from "/public/images/icon/ethereum.png";
 import React from "react";
+import aw3 from "/public/images/asset_digital_sm2.png";;
+
 import { Transaction } from "@/utils/types";
 interface Props {
   transaction: Transaction;
@@ -75,7 +77,7 @@ const CollapseDetails: React.FC<Props> = ({ transaction }) => {
               For
             </span>
             <div className="flex items-center gap-2">
-              <Image src={btc} alt="btc" className="flex-shrink-0 w-3 h-3" />
+              <Image src={aw3} alt="btc" className="flex-shrink-0 w-3 h-3" />
               <span className="leading-[150%] text-[var(--color-gray-7)] dark:text-[var(--color-gray-2)]">
               {transaction.tokens} TRV
               </span>

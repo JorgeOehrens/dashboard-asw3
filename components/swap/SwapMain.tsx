@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import Select from "../common/Select";
-import btc from "/public/images/icon/btc.png";
+import btc from "/public/images/asset_digital.png";
 import doge from "/public/images/icon/doge.png";
 import ethereum from "/public/images/icon/ethereum.png";
 import BuyToken from "@/utils/buyToken";

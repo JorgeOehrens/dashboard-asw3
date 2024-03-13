@@ -5,6 +5,7 @@ import CollapseDetails from "../common/CollapseDetails";
 import { Transaction } from "@/utils/types";
 import btc from "/public/images/icon/ethereum.png";
 import tenx from "/public/images/icon/tenx.png";
+import aw3 from "/public/images/asset_digital_sm2.png";;
 
 // Función para convertir de wei a ether
 const convertWeiToEther = (hexValue: string) => {
@@ -63,9 +64,9 @@ const TransactionItems = ({ transactions }: { transactions: Transaction[] }) => 
                   <div className="flex items-center">
                     <Image src={btc} alt="icon 1" className="flex-shrink-0" />
                     <Image
-                      src={tenx}
+                      src={aw3}
                       alt="icon 1"
-                      className="-ml-4 flex-shrink-0"
+                      className="-ml-3 flex-shrink-0"
                     />
                   </div>
                   <h6 className="text-base leading-[150%] font-semibold dark:text-white">

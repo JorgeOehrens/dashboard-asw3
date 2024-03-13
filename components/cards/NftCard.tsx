@@ -1,6 +1,6 @@
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
-import btc from "/public/images/icon/btc.png";
+import eth from "/public/images/icon/ethereum.png";
 import verify from "/public/images/icon/verify.png";
 
 type PropeType = {
@@ -29,14 +29,10 @@ const NftCard = ({ data }: PropeType) => {
         <div className="absolute right-5 -bottom-5 w-10 h-10 border-2 border-[var(--color-gray-5)] rounded-lg overflow-hidden">
           <Image src={avt} alt="user_1" className="flex-shrink-0" />
         </div>
-        <div className="absolute bottom-5 left-3 flex items-center gap-2 p-1 bg-[#111315] bg-opacity-50 rounded-3xl">
-          <Image src={btc} alt="btc" />
-          <span className="mr-1 text-white">0.03 ETH Min</span>
-
-        </div>
+ 
         <div className="absolute bottom-20 left-3 flex items-center gap-2 p-1 bg-[#111315] bg-opacity-50 rounded-3xl">
-          <Image src={btc} alt="btc" />
-          <span className="mr-1 text-white">1,830 USD Min</span>
+          <Image src={eth} alt="eth" />
+          <span className="mr-1 text-white">1,830 ETH </span>
 
         </div>
         
