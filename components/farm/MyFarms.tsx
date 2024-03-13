@@ -3,8 +3,10 @@ import Image from "next/image";
 import { useState } from "react";
 import myFarmTableData from "./farmData";
 import MyFarmsCollapsContent from "./MyFarmsCollapsContent";
+import { Transaction } from "@/utils/types";
+import aw3 from "/public/images/asset_digital_sm2.png";;
 
-const MyFarms = () => {
+const MyFarms = ({ transactions }: { transactions: Transaction[] }) => {
   const [collapsed, setCollapsed] = useState("");
   const [active, setActive] = useState("my_farms");
 
@@ -53,9 +55,7 @@ const MyFarms = () => {
         ))}
       </div>
 
-      {myFarmTableData.map((itm, i) => {
-        const { tvl, rewards, apr, btn, pool_title } = itm;
-        const { icon2, icon1 } = itm.pool;
+      {transactions.map((itm, i) => {
         return (
           <div
             className={`bg-white dark:bg-[var(--color-gray-6)] shadow-[0px_1px_2px_rgba(0,0,0,0.2)] mt-4 rounded-lg px-5 ${
@@ -76,16 +76,15 @@ const MyFarms = () => {
               <div className="min-w-[120px] whitespace-nowrap">
                 <div className="flex items-center gap-2">
                   <div className="flex items-center flex-shrink-0">
-                    <Image src={icon1} alt="icon" className="flex-shrink-0" />
+                    <Image src={aw3} alt="icon" className="flex-shrink-0" />
                     <Image
-                      src={icon2}
+                      src={aw3}
                       alt="icon"
                       className="flex-shrink-0 -ml-2"
                     />
                   </div>
                   <div className="flex flex-col gap-2">
                     <p className="text-sm leading-[150%] text-[var(--color-gray-5)] dark:text-[var(--color-gray-3)]">
-                      {pool_title}
                     </p>
                     <p className="flex items-center gap-1 text-sm leading-[150%] text-[var(--color-primary)]">
                       Get LP
@@ -99,19 +98,18 @@ const MyFarms = () => {
 
               <div className="min-w-[120px] whitespace-nowrap">
                 <p className="text-sm leading-[150%] text-[var(--color-gray-5)] dark:text-[var(--color-gray-3)]">
-                  {tvl}
                 </p>
               </div>
 
               <div className="min-w-[120px] whitespace-nowrap text-sm leading-[150%]">
                 <p className="text-sm leading-[150%] text-[var(--color-gray-5)] dark:text-[var(--color-gray-3)]">
-                  {rewards} dUUIKK /day
+                  dUUIKK /day
                 </p>
               </div>
 
               <div className="min-w-[120px] whitespace-nowrap text-sm leading-[150%]">
                 <p className="text-sm leading-[150%] text-[var(--color-primary-2)] dark:text-[var(--color-gray-3)]">
-                  {apr}%
+                 %
                 </p>
               </div>
 
