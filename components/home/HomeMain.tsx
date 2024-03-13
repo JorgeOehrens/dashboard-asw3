@@ -12,7 +12,6 @@ import walletBalanceusd from "@/utils/walletBalanceUSD";
 import { useAccount } from 'wagmi';
 import tokenBalance from "@/utils/tokenBalance";
 import getAllTransactions from "@/utils/transactionsToken";
-import getAllTransactionsData from "@/utils/transactionsToken2";
 const useIsClient = () => {
   const [isClient, setIsClient] = useState(false);
 
@@ -26,7 +25,6 @@ const useIsClient = () => {
 const HomeMain = () => {
 
   const [transactions, setTransactions] = useState<any[]>([]);
-  const [transactions2, setTransactions2] = useState<any[]>([]);
 
   const isClient = useIsClient();
 
@@ -47,8 +45,6 @@ const HomeMain = () => {
         setTransactions(transactionsData);
 
         
-        const transactionsData2 = await getAllTransactionsData();
-        setTransactions2(transactions2);
 
         const tokenBalance1 = await tokenBalance();
         settokenBalance(tokenBalance1);

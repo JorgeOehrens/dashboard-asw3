@@ -69,11 +69,11 @@ const TransactionItems = ({ transactions }: { transactions: Transaction[] }) => 
                     />
                   </div>
                   <h6 className="text-base leading-[150%] font-semibold dark:text-white">
-                  {convertWeiToEther(transaction.tokens)} TRV
+                  {transaction.tokens} TRV
                   </h6>
                 </div>
                 <p className="text-xs leading-[150%] text-[var(--color-gray-4)]">
-                  $: {convertWeiToEther(transaction.token_price)}
+                  $: {transaction.token_price}
                 </p>
               </div>
 
@@ -87,12 +87,12 @@ const TransactionItems = ({ transactions }: { transactions: Transaction[] }) => 
                 <div className="flex items-center gap-1">
                   
                   <h6 className="text-base leading-[150%] font-semibold dark:text-white">
-                  {convertWeiToEther(transaction.amount)} ETH 
+                  {transaction.amount} ETH 
                   </h6>
                   <Image src={btc} alt="icon 1" className="flex-shrink-0" />
                 </div>
                 <p className="text-xs leading-[150%] text-[var(--color-gray-4)]">
-                  ${convertWeiToEther(transaction.eth_price_usd)}
+                  ${transaction.eth_price_usd}
                 </p>
               </div>
             </div>

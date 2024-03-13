@@ -77,7 +77,7 @@ const CollapseDetails: React.FC<Props> = ({ transaction }) => {
             <div className="flex items-center gap-2">
               <Image src={btc} alt="btc" className="flex-shrink-0 w-3 h-3" />
               <span className="leading-[150%] text-[var(--color-gray-7)] dark:text-[var(--color-gray-2)]">
-              {convertWeiToEther(transaction.tokens)} TRV
+              {transaction.tokens} TRV
               </span>
             </div>
           </div>
@@ -109,7 +109,7 @@ const CollapseDetails: React.FC<Props> = ({ transaction }) => {
             <div className="flex items-center gap-2">
               <Image src={tenx} alt="btc" className="flex-shrink-0 w-3 h-3" />
               <span className="leading-[150%] text-[var(--color-gray-7)] dark:text-[var(--color-gray-2)]">
-              {convertWeiToEther(transaction.amount)} ETH
+              {transaction.amount} ETH
               </span>
             </div>
           </div>
