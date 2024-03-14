@@ -25,7 +25,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <Head>
           <title>Dashboard | Asset Web 3 </title>
           <meta name="description" content="AsSETS Digital" />
-          <link rel="icon" href="favicon.ico" />
+          <link rel="icon" href="asset_digital.png" />
         </Head>
           <ThemeProvider
             attribute="class"
@@ -50,7 +50,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <Head>
           <title>Dashboard | Asset Web 3 </title>
           <meta name="description" content="AsSETS Digital" />
-          <link rel="icon" href="favicon.ico" />
+          <link rel="icon" href="asset_digital.png" />
         </Head>
         <ThemeProvider
           attribute="class"

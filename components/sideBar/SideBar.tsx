@@ -165,7 +165,7 @@ const SideBar = ({ showText, setShowText, openSidBar, setOpenSidBar }: any) => {
                     <span
                       className={`text-[var(--color-gray-4)] font-semibold text-[16px] leading-[130%]`}
                     >
-                      {showText ? "Transactions" : ""}
+                      {showText ? "Portafolio" : ""}
                     </span>
                   </Link>
                 </li>
