@@ -191,7 +191,7 @@ const SideBar = ({ showText, setShowText, openSidBar, setOpenSidBar }: any) => {
                     </span>
                   </Link>
                 </li>
-                <li
+                {/* <li
                   className="pb-3"
                   onMouseOver={onMouseOverHandler}
                   onMouseLeave={onMouseLeaveHandler}
@@ -212,7 +212,7 @@ const SideBar = ({ showText, setShowText, openSidBar, setOpenSidBar }: any) => {
                       {showText ? "KYC" : ""}
                     </span>
                   </Link>
-                </li>
+                </li> */}
              
             
                 

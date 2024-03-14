@@ -63,7 +63,7 @@ const LiquidityMain = () => {
                 placeholder="0.0"
               />
               <span className="text-base leading-[150%] text-right outline-none text-[var(--color-gray-4)]">
-                $200 max 
+                $200 MAX 
               </span>
             </div>
           </div>
