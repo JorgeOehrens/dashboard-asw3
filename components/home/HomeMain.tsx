@@ -28,12 +28,12 @@ const HomeMain = () => {
 
   const isClient = useIsClient();
 
-  const [tokenBalance2, settokenBalance] = useState(''); // Estado para almacenar el balance en USD
+  const [tokenBalance2, settokenBalance] = useState('0'); // Estado para almacenar el balance en USD
 
 
-  const [walletBalanceUSD, setWalletBalanceUSD] = useState(''); // Estado para almacenar el balance en USD
+  const [walletBalanceUSD, setWalletBalanceUSD] = useState('0'); // Estado para almacenar el balance en USD
 
-  const [balanceWalletETH, setBalanceWalletETH] = useState('');
+  const [balanceWalletETH, setBalanceWalletETH] = useState('0');
 
   useEffect(() => {
     const fetchBalances = async () => {

@@ -2,7 +2,8 @@ import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import eth from "/public/images/icon/ethereum.png";
 import verify from "/public/images/icon/verify.png";
-
+import tokenPriceEth from "@/utils/tokenPrice";
+import ethPriceUsd from "@/utils/ethPriceUsd";
 type PropeType = {
   data: {
     id: number | string;

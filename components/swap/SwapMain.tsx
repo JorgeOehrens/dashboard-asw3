@@ -8,6 +8,11 @@ import ethereum from "/public/images/icon/ethereum.png";
 import BuyToken from "@/utils/buyToken";
 import tokenPriceEth from "@/utils/tokenPrice";
 import ethPriceUsd from "@/utils/ethPriceUsd";
+import walletBalanceETH from "@/utils/walletBalanceETH";
+import walletBalanceusd from "@/utils/walletBalanceUSD";
+import WalletBalance from "@/components/home/WalletBalance";
+import EarnBalance from "@/components/home/EarnBalance";
+
 
 const useIsClient = () => {
   const [isClient, setIsClient] = useState(false);
@@ -29,6 +34,10 @@ const SwapMain = () => {
   const handleSwap = () => {
     setSwap(!swap);
   };
+  const [priceTokenUSD2, setPriceTokenUSD2] = useState('0'); // Para almacenar el precio del token en USD
+  const [walletBalanceUSD, setWalletBalanceUSD] = useState('0'); // Estado para almacenar el balance en USD
+
+  const [balanceWalletETH, setBalanceWalletETH] = useState('0');
   const [priceTokenUSD, setPriceTokenUSD] = useState('0'); // Para almacenar el precio del token en USD
   const [earnBalanceUSD, setEarnBalanceUSD] = useState('0'); // Para almacenar el "Earn balance" en USD
 
@@ -49,6 +58,10 @@ const SwapMain = () => {
 
         const tokenBalance1 = await tokenPriceEth();
         settokenPrice(tokenBalance1);
+        const usdBalance = await walletBalanceusd(); // Asumiendo que esta función devuelve el balance en USD
+        setWalletBalanceUSD(usdBalance); // Actualiza el estado con el balance en USD
+        const ethBalance = await walletBalanceETH();
+        setBalanceWalletETH(ethBalance);
         
       }
     };
@@ -106,7 +119,10 @@ useEffect(() => {
   useEffect(() => {
     const calculatePriceTokenUSD = () => {
       const priceUSD = Number(tokenPrice) * Number(ethPrice);
+
       setPriceTokenUSD(priceUSD.toFixed(2));
+      setPriceTokenUSD2(priceUSD.toFixed(2));
+
     };
   
     calculatePriceTokenUSD();
@@ -114,6 +130,18 @@ useEffect(() => {
   
   return (
     <section className="w-full h-[77vh] sm:h-[100vh]">
+           <div className="grid grid-cols-2 gap-4 mb-6">
+          {/* Wallet Balance Section */}
+          <WalletBalance 
+          balanceWalletETH={balanceWalletETH}
+          balanceWalletUSD={walletBalanceUSD}
+
+           />
+       <EarnBalance
+          
+          />
+        
+        </div>
       <div className="max-w-[504px] m-auto border dark:border-[#3C4145] py-5 px-4 sm:px-8 bg-white dark:bg-[var(--color-gray-7)] rounded-lg shadow-[0px_1px_1px_rgba(0,0,0,0.25)]">
         <div className="flex justify-between items-center gap-2 sm:gap-5 py-1 px-2 border border-[rgba(111,118, 126, 0.19)] dark:border-[#3C4145] rounded-lg">
           <Link
@@ -153,7 +181,10 @@ useEffect(() => {
             onChange={(e) => setNToken(e.target.value)} // Actualiza el estado con el valor del input
           />
               <span className="price_in_usd text-base leading-[150%] text-right outline-none text-[var(--color-gray-4)]">
-                $0.0
+                ${usdConversion}
+              </span>
+              <span className="price_in_usd text-base leading-[150%] text-right outline-none text-[var(--color-gray-4)]">
+                {ethToPay} ETH
               </span>
             </div>
           </div>

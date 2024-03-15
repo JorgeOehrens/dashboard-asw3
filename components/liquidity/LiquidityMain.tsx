@@ -5,6 +5,12 @@ import Select from "../common/Select";
 import btc from "/public/images/icon/btc.png";
 import doge from "/public/images/icon/doge.png";
 import ethereum from "/public/images/icon/ethereum.png";
+import walletBalanceETH from "@/utils/walletBalanceETH";
+import walletBalanceusd from "@/utils/walletBalanceUSD";
+import WalletBalance from "@/components/home/WalletBalance";
+import EarnBalance from "@/components/home/EarnBalance";
+import trv from "@/public/images/asset_digital_sm2.png";
+
 
 const useIsClient = () => {
   const [isClient, setIsClient] = useState(false);
@@ -20,16 +26,52 @@ const coinsLiquidity = [
   { id: 2, name: "ETH", icon: ethereum },
 ];
 
+const tokensLiquidity = [
+  { id: 2, name: "TRV", icon: trv },
+];
+
 const LiquidityMain = () => {
   const isClient = useIsClient();
   const [swap, setSwap] = useState(false);
+  const [walletBalanceUSD, setWalletBalanceUSD] = useState('0'); // Estado para almacenar el balance en USD
 
+  const [balanceWalletETH, setBalanceWalletETH] = useState('0');
+
+  useEffect(() => {
+    const fetchBalances = async () => {
+      if (isClient) { // Solo intentamos cargar los balances si estamos en el lado del cliente
+
+
+        
+
+        const usdBalance = await walletBalanceusd(); // Asumiendo que esta función devuelve el balance en USD
+        setWalletBalanceUSD(usdBalance); // Actualiza el estado con el balance en USD
+        const ethBalance = await walletBalanceETH();
+        setBalanceWalletETH(ethBalance);
+        
+      }
+    };
+
+    fetchBalances();
+  }, [isClient]); 
   const handleSwap = () => {
     setSwap(!swap);
   };
 
   return (
     <section className="w-full h-auto sm:h-[100vh]">
+                 <div className="grid grid-cols-2 gap-4 mb-6">
+          {/* Wallet Balance Section */}
+          <WalletBalance 
+          balanceWalletETH={balanceWalletETH}
+          balanceWalletUSD={walletBalanceUSD}
+
+           />
+       <EarnBalance
+          
+          />
+        
+        </div>
       <div className="max-w-[504px] m-auto border dark:border-[#3C4145] py-5 px-4 sm:px-8 bg-white dark:bg-[var(--color-gray-7)] rounded-lg shadow-[0px_1px_1px_rgba(0,0,0,0.25)]">
         <div className="flex justify-evenly items-center gap-2 sm:gap-5 py-1 px-2 border border-[rgba(111,118, 126, 0.19)] dark:border-[#3C4145] rounded-lg">
           <Link href="/swap" className="text-center flex-1 p-2">
@@ -47,10 +89,21 @@ const LiquidityMain = () => {
 
         
 
-
-        <div className="cls">
+        
+        <div className="cls mt-3">
+   
+          <div className="flex items-center justify-between border dark:border-[#3C4145] px-2 sm:px-5 py-1 sm:py-3 rounded-lg mt-3 dark:bg-[var(--color-gray-6)]">
+            <div className="min-w-[113px] relative">
+            TOKENS
+            </div>
+            <div className="flex flex-1 flex-col items-end border-l dark:border-[#3C4145]">
+            <Select data={tokensLiquidity} />
+            </div>
+          </div>
+        </div>
+        <div className="cls mt-5">
           <h6 className="text-base font-semibold text-[var(--color-gray-5)] dark:text-white">
-            Swap from
+        Profit to Withdraw
           </h6>
           <div className="flex items-center justify-between border dark:border-[#3C4145] px-2 sm:px-5 py-1 sm:py-3 rounded-lg mt-3 dark:bg-[var(--color-gray-6)]">
             <div className="min-w-[113px] relative">
@@ -71,8 +124,7 @@ const LiquidityMain = () => {
 
         <div className="mt-3">
           <h6 className="text-base font-semibold text-[var(--color-gray-5)] dark:text-white">
-            Coin
-          </h6>
+          To receive         </h6>
           <div className="flex items-center justify-between border dark:border-[#3C4145] px-2 sm:px-5 py-1 sm:py-3 rounded-lg mt-3 dark:bg-[var(--color-gray-6)]">
             <div className="min-w-[113px]">
               {/* Select */}
@@ -94,7 +146,7 @@ const LiquidityMain = () => {
         <div className="flex flex-col gap-3 mt-3">
           <p className="flex items-center justify-between text-sm leading-[150%]">
             <span className="text-[var(--color-gray-4)] dark:text-[var(--color-gray-3)]">
-              Base
+            ETH Price (USD)
             </span>
             <span className="text-[var(--color-gray-5)] dark:text-[var(--color-gray-2)]">
               BTC
@@ -102,32 +154,25 @@ const LiquidityMain = () => {
           </p>
           <p className="flex items-center justify-between text-sm leading-[150%]">
             <span className="text-[var(--color-gray-4)] dark:text-[var(--color-gray-3)]">
-              Pool liquidity (BTC)
+            Profit to Withdraw (USD)
             </span>
             <span className="text-[var(--color-gray-5)] dark:text-[var(--color-gray-2)]">
-              4,685,918.19 BTC
+              $ 0 USD
             </span>
           </p>
           <p className="flex items-center justify-between text-sm leading-[150%]">
             <span className="text-[var(--color-gray-4)] dark:text-[var(--color-gray-3)]">
-              Pool liquidity (ETH)
+            Profit to Withdraw (ETH) 
             </span>
             <span className="text-[var(--color-gray-5)] dark:text-[var(--color-gray-2)]">
-              58,982.95 ETH
+            0.0 ETH
             </span>
           </p>
-          <p className="flex items-center justify-between text-sm leading-[150%]">
-            <span className="text-[var(--color-gray-4)] dark:text-[var(--color-gray-3)]">
-              LP supply
-            </span>
-            <span className="text-[var(--color-gray-5)] dark:text-[var(--color-gray-2)]">
-              1,532,352.00 LP
-            </span>
-          </p>
+         
         </div>
-        { isClient ?        <button className="w-full text-center text-lg leading-[150%] text-[#F8FAFC] bg-[var(--color-primary)] rounded-lg p-2 mt-8">
-          Witdrah
-        </button> :          <button className="w-full text-center text-lg leading-[150%] text-[#F8FAFC] bg-[var(--color-primary)] rounded-lg p-2 mt-8">
+        { isClient ?        <button className="w-full text-center text-lg leading-[150%] text-[#F8FAFC] bg-[var(--color-primary-4)] rounded-lg p-2 mt-8">
+          Withdraw
+        </button> :          <button className="w-full text-center text-lg leading-[150%] text-[#F8FAFC] bg-[var(--color-primary-4)] rounded-lg p-2 mt-8">
           Conectando
         </button>}
 

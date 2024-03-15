@@ -16,6 +16,9 @@ import nft_8 from "/public/images/nft/nft_8.png";
 import nft_9 from "/public/images/nft/nft_9.png";
 import user_1 from "/public/images/user/logo2.jpg";
 
+
+
+
 const nftExploreData = [
   {
     id: 1,
