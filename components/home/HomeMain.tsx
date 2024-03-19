@@ -6,7 +6,7 @@ import WalletAssets from "./WalletAssets";
 import WalletBalance from "./WalletBalance";
 import useTokenBalance from "@/lib/readBalanceTokens";
 import useTokenSelect from "@/lib/useToken";
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import walletBalanceETH from "@/utils/walletBalanceETH";
 import walletBalanceusd from "@/utils/walletBalanceUSD";
 import { useAccount } from 'wagmi';
@@ -62,11 +62,13 @@ const HomeMain = () => {
       <div className="w-full xl:w-8/12">
       <div className="grid grid-cols-2 gap-4 mb-6">
           {/* Wallet Balance Section */}
+          <Suspense>
           <WalletBalance 
           balanceWalletETH={balanceWalletETH}
           balanceWalletUSD={walletBalanceUSD}
 
            />
+           </Suspense>
 
           {/* Earn Balance Section */}
           <EarnBalance

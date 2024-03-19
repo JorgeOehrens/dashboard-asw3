@@ -1,5 +1,9 @@
 import BalanceCard from "../cards/BalanceCard";
 import RadialBar from "../charts/RadialBar";
+
+
+
+
 const EarnBalance = () => {
   return (
     <BalanceCard balance="0" balance_usd="0" title="Earn Balance">
