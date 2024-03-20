@@ -10,7 +10,7 @@ import walletBalanceusd from "@/utils/walletBalanceUSD";
 import WalletBalance from "@/components/home/WalletBalance";
 import EarnBalance from "@/components/home/EarnBalance";
 import trv from "@/public/images/asset_digital_sm2.png";
-
+import Withdraw from "@/utils/withdraw";
 
 const useIsClient = () => {
   const [isClient, setIsClient] = useState(false);
@@ -34,9 +34,16 @@ const LiquidityMain = () => {
   const isClient = useIsClient();
   const [swap, setSwap] = useState(false);
   const [walletBalanceUSD, setWalletBalanceUSD] = useState('0'); // Estado para almacenar el balance en USD
+  const [nToken, setNToken] = useState(""); // Estado para manejar la entrada de número de tokens
 
   const [balanceWalletETH, setBalanceWalletETH] = useState('0');
-
+  const handleWithdraw = async () => {
+    if(isClient) { // Si el cliente está conectado, intenta comprar tokens
+      await Withdraw(nToken); // Llama a tu función BuyToken con el número de tokens
+    } else {
+      console.log("---");
+    }
+  };
   useEffect(() => {
     const fetchBalances = async () => {
       if (isClient) { // Solo intentamos cargar los balances si estamos en el lado del cliente
@@ -131,10 +138,12 @@ const LiquidityMain = () => {
               <Select data={coinsLiquidity} />
             </div>
             <div className="flex flex-1 flex-col items-end border-l dark:border-[#3C4145]">
+
               <input
                 type={"text"}
                 className="w-full text-lg leading-[150%] text-right outline-none bg-transparent text-[var(--color-gray-5)] dark:text-white placeholder:text-[var(--color-gray-5)] dark:placeholder:text-[var(--color-gray-3)]"
                 placeholder="0.0"
+                onChange={(e) => setNToken(e.target.value)} 
               />
               <span className="text-base leading-[150%] text-right outline-none text-[var(--color-gray-4)]">
                 $0.0
@@ -170,10 +179,11 @@ const LiquidityMain = () => {
           </p>
          
         </div>
-        { isClient ?        <button className="w-full text-center text-lg leading-[150%] text-[#F8FAFC] bg-[var(--color-primary-4)] rounded-lg p-2 mt-8">
-          Withdraw
-        </button> :          <button className="w-full text-center text-lg leading-[150%] text-[#F8FAFC] bg-[var(--color-primary-4)] rounded-lg p-2 mt-8">
-          Conectando
+        {isClient ? 
+        <button onClick={handleWithdraw} className="w-full text-center text-lg leading-[150%] text-[#F8FAFC] bg-[var(--color-primary-4)] rounded-lg p-2 mt-8">
+                 Withdraw
+        </button>     :         <button className="w-full text-center text-lg leading-[150%] text-[#F8FAFC] bg-[var(--color-primary-4)] rounded-lg p-2 mt-8">
+          Connect Wallet
         </button>}
 
       
