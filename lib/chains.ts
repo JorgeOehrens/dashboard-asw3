@@ -2,13 +2,11 @@ import { configureChains } from 'wagmi';
 import { publicProvider } from 'wagmi/providers/public';
 
 import {
-    arbitrum,
-    goerli,
-    mainnet,
-    optimism,
-    polygon,
-    base,
-    zora,
+ 
+    sepolia,
+    mainnet
+
+
   } from 'wagmi/chains';
 
 
@@ -17,10 +15,10 @@ import {
   
 const { chains, publicClient, webSocketPublicClient } = configureChains(
     [
+      sepolia,
       mainnet,
-      polygon,
-      goerli,
-      ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === 'true' ? [goerli] : []),
+
+      ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === 'true' ? [sepolia] : []),
     ],
     [publicProvider()]
   );
