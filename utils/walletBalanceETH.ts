@@ -6,7 +6,7 @@ import connectingTOKENContract from "@/lib/useTokenContract";
 
 // Objeto para almacenar los valores en caché
 const walletBalanceCache = {
-    balance: 0,
+    balance: "0",
     timestamp: 0
 };
 
