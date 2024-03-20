@@ -10,6 +10,7 @@ import monero from "/public/images/icon/monero.png";
 import ripple from "/public/images/icon/ripple.png";
 import tenx from "/public/images/icon/tenx.png";
 import tether from "/public/images/icon/tether.png";
+import user_2 from "/public/images/user/logo2.jpg";
 
 
 type PropsType = {

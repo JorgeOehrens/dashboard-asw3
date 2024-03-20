@@ -7,21 +7,24 @@ const Descriptions = () => {
         Descriptions
       </h6>
       <p className="text-[var(--color-gray-5)] dark:text-[var(--color-gray-73)] mt-3">
-        Mauris libero mi, condimentum at orci at, pulvinar faucibus turpis. Sed
-        sem neque, fermentum ut mattis eu, condimentum ut magna. Maecenas nec
-        tortor id augue sodales mollis id eu tellus. Fusce et leo odio. Nullam
-        tempor tempor iaculis. Duis mauris est, fermentum id odio vitae, auctor
-        euismod magna. Donec mollis cursus elit vitae posuere.
+      This property represents 17.52 AC of vacant land as of the
+effective date of valuation. It is approved for the development
+of high-density multi-family uses comprised of 480 units
+demonstrating an overall density of 27.4 units per acre.
+Ultimately, this project is proposed for the development of one
+and two bedroom apartment units, along with 432 storage units.
+The apartment units range in size from 658 to 1,252 square feet
+with an average size at 827 square feet. Storage units includes a
+mix of 106-4’ x 8’ and 326 - 6’ x 8’ units. 
       </p>
       
-      <div className="mt-6 rounded-lg overflow-hidden">
+      {/* <div className="mt-6 rounded-lg overflow-hidden">
         <div className="flex items-center flex-wrap justify-between gap-3 bg-white dark:bg-[var(--color-gray-7)] px-3 xl:px-6 pt-5 pb-7">
           <h6 className="text-2xl leading-[150%] font-bold text-[var(--color-gray-6)] dark:text-white -mt-1">
             Investment
           </h6>
           <div className="flex items-center justify-between border dark:border-[#3C4145] px-2 sm:px-5 py-1 sm:py-3 rounded-lg mt-3 dark:bg-[var(--color-gray-6)]">
             <div className="min-w-[113px] relative">
-              {/* Select */}
               Tokens
             </div>
             <div className="flex flex-1 flex-col items-end border-l dark:border-[#3C4145]">
@@ -71,9 +74,8 @@ const Descriptions = () => {
           </div>
         </div>
 
-        {/* PriceChart */}
         <PriceChart />
-      </div>
+      </div> */}
     </div>
   );
 };

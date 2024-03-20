@@ -32,8 +32,12 @@ const NftCard = ({ data }: PropeType) => {
         </div>
  
         <div className="absolute bottom-20 left-3 flex items-center gap-2 p-1 bg-[#111315] bg-opacity-50 rounded-3xl">
+          <span className="mr-1 text-white">$1,900 USD </span>
+
+        </div>
+        <div className="absolute bottom-10 left-3 flex items-center gap-2 p-1 bg-[#111315] bg-opacity-50 rounded-3xl">
           <Image src={eth} alt="eth" />
-          <span className="mr-1 text-white">1,830 ETH </span>
+          <span className="mr-1 text-white">0.01 ETH min </span>
 
         </div>
         

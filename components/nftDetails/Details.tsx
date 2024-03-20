@@ -1,19 +1,45 @@
 import Image from "next/image";
 import bidHistoryData from "./bidHistory";
+const documentData = [
+  {
+    id: "doc1",
+    title: "APPRAISAL",
+    url: "https://www.assetsweb3.com/assets/doc1-a6439719.pdf",
+  },
+  {
+    id: "doc2",
+    title: "REGLAMENTO INTERNO",
+    url: "https://www.assetsweb3.com/assets/doc2-f9347f43.pdf",
+  },
+  {
+    id: "doc3",
+    title: "CLOSING INSTRUCTION",
+    url: "https://www.assetsweb3.com/assets/doc3-35f79f0c.pdf",
+  },
+];
 
 const Details = () => {
   return (
     <div className="clss">
       <h6 className="text-2xl leading-[150%] font-bold text-[var(--color-gray-6)] dark:text-white ">
-        Details
+        Documents
       </h6>
-      <p className="text-[var(--color-gray-5)] dark:text-[var(--color-gray-3)] mt-3">
-        Mauris libero mi, condimentum at orci at, pulvinar faucibus turpis. Sed
-        sem neque, fermentum ut mattis eu, condimentum ut magna. Maecenas nec
-        tortor id augue sodales mollis id eu tellus. Fusce et leo odio. Nullam
-        tempor tempor iaculis. Duis mauris est, fermentum id odio vitae, auctor
-        euismod magna. Donec mollis cursus elit vitae posuere.
-      </p>
+      <div className="mt-5 flex flex-col gap-5">
+          {documentData.map((file) => (
+            <a
+              key={file.id}
+              href={file.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 p-2 border border-gray-300 rounded-lg hover:border-gray-400 transition-colors"
+            >
+                    <span className="material-symbols-outlined">
+                    file_download
+                    </span>
+              <span className="text-[var(--color-gray-7)] dark:text-white">{file.title}</span>
+            </a>
+          ))}
+        </div>
       <div className="mt-6 bg-white dark:bg-[var(--color-gray-7)] px-2 xl:px-6 py-5 rounded-lg">
         <div className="flex items-center flex-wrap justify-between gap-3">
           <h6 className="text-2xl leading-[150%] font-bold text-[var(--color-gray-6)] dark:text-white -mt-1">
