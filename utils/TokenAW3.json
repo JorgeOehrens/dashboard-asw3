@@ -320,6 +320,39 @@
       "inputs": [
         {
           "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "tokens",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "ethPriceUSD",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "tokenPrice",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "addWithdrawTransaction",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
           "name": "owner",
           "type": "address"
         },
@@ -436,6 +469,11 @@
               "internalType": "uint256",
               "name": "timestamp",
               "type": "uint256"
+            },
+            {
+              "internalType": "string",
+              "name": "type_transaction",
+              "type": "string"
             }
           ],
           "internalType": "struct TokenAW3.Transaction[]",

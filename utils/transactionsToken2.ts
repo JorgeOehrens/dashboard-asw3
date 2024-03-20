@@ -25,7 +25,10 @@ const getAllTransactionsData = async (): Promise<Transaction[]> => {
                 eth_price_usd: ethers.utils.formatUnits(transaction.eth_price_usd, 18), // Asume que 'eth_price_usd' se trata como un valor con decimales. Ajusta según tu contrato.
                 token_price: ethers.utils.formatUnits(transaction.token_price, 18), // Ajusta según tu contrato
                 amount: ethers.utils.formatEther(transaction.amount),
+
                 timestamp: new Date(transaction.timestamp.toNumber() * 1000).toLocaleString(),
+                type: transaction.type_transaction,
+
             }));
 
             return structuredTransactions;

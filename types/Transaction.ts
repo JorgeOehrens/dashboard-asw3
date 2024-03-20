@@ -6,6 +6,8 @@ type SmartContractTransaction = {
     token_price:  string; // El precio del token en la transacción. Podría ser manejado como string para evitar problemas de precisión
     amount: string; // La cantidad de ETH (o la moneda que estés utilizando) transferida en la transacción. Podría ser manejado como string
     timestamp: number; // Marca de tiempo Unix de la transacción
+    type: string; // La cantidad de ETH (o la moneda que estés utilizando) transferida en la transacción. Podría ser manejado como string
+
  // Tipo de transacción, asumiendo que solo puede ser 'compra' o 'venta', pero dejamos string para flexibilidad
   };
 

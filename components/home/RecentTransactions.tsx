@@ -22,7 +22,6 @@ const convertWeiToEther = (wei: string) => {
 };
 
 const RecentTransactions = () => {
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [transactions2, setTransactions2] = useState<Transaction[]>([]);
 
   const isClient = useIsClient();
@@ -31,8 +30,7 @@ const RecentTransactions = () => {
     const fetchTransactions = async () => {
       if (isClient) {
         try {
-          const transactionsData = await getAllTransactions();
-          setTransactions(transactionsData);
+
           
           const transactionsData2 = await getAllTransactionsData();
           setTransactions2(transactionsData2);
@@ -45,6 +43,7 @@ const RecentTransactions = () => {
 
     fetchTransactions();
   }, [isClient]);
+  console.log("TRANSACTIONS: ",transactions2);
 
   return (
     <div className="flex flex-col gap-6 bg-white dark:bg-[var(--color-gray-7)] rounded-lg p-3">
