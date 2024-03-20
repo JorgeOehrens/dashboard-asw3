@@ -91,7 +91,7 @@ const NavBar = ({
             <div className="flex flex-col">
             {isClient ? <h6 className="text-base font-bold"></h6> : <h6>0x...</h6>}
               <div className="flex items-center gap-1 text-[#6F767E]">
-                {isClient ? <small>Earn Balance: $43</small> : <small>Cargando balance...</small>}
+                {isClient ? <small>Earn Balance: $0</small> : <small>Cargando balance...</small>}
 
               </div>
             </div>
