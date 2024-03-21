@@ -23,8 +23,8 @@ const Layout = ({ children }: LayoutProps) => {
   });
 
   useEffect(() => {
-    // Redirige si no está conectado
-    if (!isConnected && router.pathname !== "/login") {
+    // Redirige si no está conectado y la página no es /login, /explore-nfts, ni /nft-details
+    if (!isConnected && !['/login', '/explore-nfts', '/nft-details'].includes(router.pathname)) {
       router.push("/login");
     }
   }, [isConnected, router]);
@@ -45,7 +45,6 @@ const Layout = ({ children }: LayoutProps) => {
 
       {/* Search */}
       <Search isOpen={isOpen} setIsOpen={setIsOpen} />
-      {router.pathname !== "/login" && (
 
       <div className="flex items-start">
         {/* Conditional rendering of SideBar */}
@@ -88,15 +87,7 @@ const Layout = ({ children }: LayoutProps) => {
           <Footer />
         </div>
       </div>
-      )}
-      {router.pathname == "/login" && (
 
-      <section
-            className={`flex flex-col xl:flex-row gap-5 ${clss} mt-5 sm:mt-10`}
-          >
-            {children}
-      </section>
-      )}
 
     </>
   );
