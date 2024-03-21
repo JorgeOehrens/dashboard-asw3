@@ -98,7 +98,7 @@ const SideBar = ({ showText, setShowText, openSidBar, setOpenSidBar }: any) => {
                     onMouseLeave={onMouseLeaveHandler}
                   >
                     <Link
-                      href="https://assetsweb3.com/"
+                      href="https://www.assetsweb3.com/"
                       className={`flex items-center gap-2 p-3 ${
                         showText ? "" : "justify-center"
                       } ${route === "/a" ? "side-bar-active" : ""}`}
@@ -253,7 +253,7 @@ const SideBar = ({ showText, setShowText, openSidBar, setOpenSidBar }: any) => {
                     onMouseLeave={onMouseLeaveHandler}
                   >
                     <Link
-                      href="https://assetsweb3.com/"
+                      href="https://www.assetsweb3.com/"
                       className={`flex items-center gap-2 p-3 ${
                         showText ? "" : "justify-center"
                       } ${route === "/a" ? "side-bar-active" : ""}`}
