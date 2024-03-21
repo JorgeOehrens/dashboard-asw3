@@ -8,8 +8,12 @@ import { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import logo from "/public/images/logo.png";
 import logo_icon from "/public/images/asset_digital.png";
+import { useAccount } from 'wagmi';
 
 const SideBar = ({ showText, setShowText, openSidBar, setOpenSidBar }: any) => {
+
+  const { isConnected } = useAccount();
+
   const [enabled, setEnabled] = useState(false);
   const { theme, setTheme } = useTheme();
   const [show, setShow] = useState(true);
@@ -69,12 +73,13 @@ const SideBar = ({ showText, setShowText, openSidBar, setOpenSidBar }: any) => {
         }}
         transition={{ duration: 0.5 }}
       >
+
         <div className="h-[calc(100vh-65px)] flex flex-col justify-between">
           <div className="clss">
             <div className="flex items-center gap-10">
               <Link href="/">
                 <Image
-                  src={showText ? logo : logo_icon}
+                  src={showText ? logo_icon : logo_icon}
                   alt="logo"
                   className="flex-shrink-0"
                 />
@@ -84,139 +89,257 @@ const SideBar = ({ showText, setShowText, openSidBar, setOpenSidBar }: any) => {
               </button>
             </div>
             <div className="mt-[60px]">
-              <ul>
-                <li
-                  className="pb-3"
-                  onMouseOver={onMouseOverHandler}
-                  onMouseLeave={onMouseLeaveHandler}
-                >
-                  <Link
-                    href="/"
-                    className={`flex items-center gap-2 p-3 ${
-                      showText ? "" : "justify-center"
-                    } ${route === "/" ? "side-bar-active" : ""}`}
-                    onClick={() => setOpenSidBar(false)}
+                {
+                isConnected ? (
+                  <ul>
+<li
+                    className="pb-3"
+                    onMouseOver={onMouseOverHandler}
+                    onMouseLeave={onMouseLeaveHandler}
                   >
-                    <span className="material-symbols-outlined">cottage</span>
-                    <span
-                      className={`text-[var(--color-gray-4)] font-semibold text-[16px] leading-[130%]`}
+                    <Link
+                      href="https://assetsweb3.com/"
+                      className={`flex items-center gap-2 p-3 ${
+                        showText ? "" : "justify-center"
+                      } ${route === "/a" ? "side-bar-active" : ""}`}
+                      onClick={() => setOpenSidBar(false)}
                     >
-                      {showText ? "Home" : ""}
-                    </span>
-                  </Link>
-                </li>
-                <li
-                  className="pb-3"
-                  onMouseOver={onMouseOverHandler}
-                  onMouseLeave={onMouseLeaveHandler}
-                >
-                  <Link
-                    href="/swap"
-                    className={`flex items-center gap-2 p-3 ${
-                      showText ? "" : "justify-center"
-                    } ${route === "/swap" ? "side-bar-active" : ""}`}
-                    onClick={() => setOpenSidBar(false)}
+                      <span className="material-symbols-outlined">public</span>
+                      <span
+                        className={`text-[var(--color-gray-4)] font-semibold text-[16px] leading-[130%]`}
+                      >
+                        {showText ? "Home" : ""}
+                      </span>
+                    </Link>
+                  </li>
+                  <li
+                    className="pb-3"
+                    onMouseOver={onMouseOverHandler}
+                    onMouseLeave={onMouseLeaveHandler}
                   >
-                    <span className="material-symbols-outlined">
-                      swap_horiz
-                    </span>
-                    <span
-                      className={`text-[var(--color-gray-4)] font-semibold text-[16px] leading-[130%]`}
+                    <Link
+                      href="https://docs.assetsweb3.com/"
+                      className={`flex items-center gap-2 p-3 ${
+                        showText ? "" : "justify-center"
+                      } ${route === "/a" ? "side-bar-active" : ""}`}
+                      onClick={() => setOpenSidBar(false)}
                     >
-                      {showText ? "Buy" : ""}
-                    </span>
-                  </Link>
-                </li>
-                <li
-                  className="pb-3"
-                  onMouseOver={onMouseOverHandler}
-                  onMouseLeave={onMouseLeaveHandler}
-                >
-                  <Link
-                    href="/liquidity"
-                    className={`flex items-center gap-2 p-3 ${
-                      showText ? "" : "justify-center"
-                    } ${route === "/liquidity" ? "side-bar-active" : ""}`}
-                    onClick={() => setOpenSidBar(false)}
+                      <span className="material-symbols-outlined">public</span>
+                      <span
+                        className={`text-[var(--color-gray-4)] font-semibold text-[16px] leading-[130%]`}
+                      >
+                        {showText ? "White paper" : ""}
+                      </span>
+                    </Link>
+                  </li>
+                  <hr />
+                  <li
+                    className="pb-3"
+                    onMouseOver={onMouseOverHandler}
+                    onMouseLeave={onMouseLeaveHandler}
                   >
-                    <span className="material-symbols-outlined">
-                      hourglass_empty
-                    </span>
-                    <span
-                      className={`text-[var(--color-gray-4)] font-semibold text-[16px] leading-[130%]`}
+                    <Link
+                      href="/"
+                      className={`flex items-center gap-2 p-3 ${
+                        showText ? "" : "justify-center"
+                      } ${route === "/" ? "side-bar-active" : ""}`}
+                      onClick={() => setOpenSidBar(false)}
                     >
-                      {showText ? "Withdraw" : ""}
-                    </span>
-                  </Link>
-                </li>
-                <li
-                  className="pb-3"
-                  onMouseOver={onMouseOverHandler}
-                  onMouseLeave={onMouseLeaveHandler}
-                >
-                  <Link
-                    href="/farm"
-                    className={`flex items-center gap-2 p-3 ${
-                      showText ? "" : "justify-center"
-                    } ${route === "/farm" ? "side-bar-active" : ""}`}
-                    onClick={() => setOpenSidBar(false)}
+                      <span className="material-symbols-outlined">cottage</span>
+                      <span
+                        className={`text-[var(--color-gray-4)] font-semibold text-[16px] leading-[130%]`}
+                      >
+                        {showText ? "Dashboard" : ""}
+                      </span>
+                    </Link>
+                  </li>
+                  <li
+                    className="pb-3"
+                    onMouseOver={onMouseOverHandler}
+                    onMouseLeave={onMouseLeaveHandler}
                   >
-                    <span className="material-symbols-outlined">dns</span>
-                    <span
-                      className={`text-[var(--color-gray-4)] font-semibold text-[16px] leading-[130%]`}
+                    <Link
+                      href="/swap"
+                      className={`flex items-center gap-2 p-3 ${
+                        showText ? "" : "justify-center"
+                      } ${route === "/swap" ? "side-bar-active" : ""}`}
+                      onClick={() => setOpenSidBar(false)}
                     >
-                      {showText ? "Portafolio" : ""}
-                    </span>
-                  </Link>
-                </li>
+                      <span className="material-symbols-outlined">
+                        swap_horiz
+                      </span>
+                      <span
+                        className={`text-[var(--color-gray-4)] font-semibold text-[16px] leading-[130%]`}
+                      >
+                        {showText ? "Buy" : ""}
+                      </span>
+                    </Link>
+                  </li>
+                  <li
+                    className="pb-3"
+                    onMouseOver={onMouseOverHandler}
+                    onMouseLeave={onMouseLeaveHandler}
+                  >
+                    <Link
+                      href="/liquidity"
+                      className={`flex items-center gap-2 p-3 ${
+                        showText ? "" : "justify-center"
+                      } ${route === "/liquidity" ? "side-bar-active" : ""}`}
+                      onClick={() => setOpenSidBar(false)}
+                    >
+                      <span className="material-symbols-outlined">
+                        hourglass_empty
+                      </span>
+                      <span
+                        className={`text-[var(--color-gray-4)] font-semibold text-[16px] leading-[130%]`}
+                      >
+                        {showText ? "Withdraw" : ""}
+                      </span>
+                    </Link>
+                  </li>
+                  <li
+                    className="pb-3"
+                    onMouseOver={onMouseOverHandler}
+                    onMouseLeave={onMouseLeaveHandler}
+                  >
+                    <Link
+                      href="/farm"
+                      className={`flex items-center gap-2 p-3 ${
+                        showText ? "" : "justify-center"
+                      } ${route === "/farm" ? "side-bar-active" : ""}`}
+                      onClick={() => setOpenSidBar(false)}
+                    >
+                      <span className="material-symbols-outlined">dns</span>
+                      <span
+                        className={`text-[var(--color-gray-4)] font-semibold text-[16px] leading-[130%]`}
+                      >
+                        {showText ? "Portafolio" : ""}
+                      </span>
+                    </Link>
+                  </li>
+                  
+                  
+                  <li
+                    className="pb-3"
+                    onMouseOver={onMouseOverHandler}
+                    onMouseLeave={onMouseLeaveHandler}
+                  >
+                    <Link
+                      href="/explore-nfts"
+                      className={`flex items-center gap-2 p-3 ${
+                        showText ? "" : "justify-center"
+                      } ${route === "/explore-nfts" ? "side-bar-active" : ""}`}
+                      onClick={() => setOpenSidBar(false)}
+                    >
+                      <span className="material-symbols-outlined">explore</span>
+                      <span
+                        className={`text-[var(--color-gray-4)] font-semibold text-[16px] leading-[130%]`}
+                      >
+                        {showText ? "Marketplace" : ""}
+                      </span>
+                    </Link>
+                  </li>
+                 
+               
+              
+                  
+                </ul>
+                ) : (
+                  <ul>
+                    
+<li
+                    className="pb-3"
+                    onMouseOver={onMouseOverHandler}
+                    onMouseLeave={onMouseLeaveHandler}
+                  >
+                    <Link
+                      href="https://assetsweb3.com/"
+                      className={`flex items-center gap-2 p-3 ${
+                        showText ? "" : "justify-center"
+                      } ${route === "/a" ? "side-bar-active" : ""}`}
+                      onClick={() => setOpenSidBar(false)}
+                    >
+                      <span className="material-symbols-outlined">public</span>
+                      <span
+                        className={`text-[var(--color-gray-4)] font-semibold text-[16px] leading-[130%]`}
+                      >
+                        {showText ? "Home" : ""}
+                      </span>
+                    </Link>
+                  </li>
+              
+                  <li
+                    className="pb-3"
+                    onMouseOver={onMouseOverHandler}
+                    onMouseLeave={onMouseLeaveHandler}
+                  >
+                    <Link
+                      href="https://docs.assetsweb3.com/"
+                      className={`flex items-center gap-2 p-3 ${
+                        showText ? "" : "justify-center"
+                      } ${route === "/a" ? "side-bar-active" : ""}`}
+                      onClick={() => setOpenSidBar(false)}
+                    >
+                      <span className="material-symbols-outlined">public</span>
+                      <span
+                        className={`text-[var(--color-gray-4)] font-semibold text-[16px] leading-[130%]`}
+                      >
+                        {showText ? "White paper" : ""}
+                      </span>
+                    </Link>
+                  </li>
+                 
+                  
                 
-                
-                <li
-                  className="pb-3"
-                  onMouseOver={onMouseOverHandler}
-                  onMouseLeave={onMouseLeaveHandler}
-                >
-                  <Link
-                    href="/explore-nfts"
-                    className={`flex items-center gap-2 p-3 ${
-                      showText ? "" : "justify-center"
-                    } ${route === "/explore-nfts" ? "side-bar-active" : ""}`}
-                    onClick={() => setOpenSidBar(false)}
+                  
+                  
+                  <li
+                    className="pb-3"
+                    onMouseOver={onMouseOverHandler}
+                    onMouseLeave={onMouseLeaveHandler}
                   >
-                    <span className="material-symbols-outlined">explore</span>
-                    <span
-                      className={`text-[var(--color-gray-4)] font-semibold text-[16px] leading-[130%]`}
+                    <Link
+                      href="/explore-nfts"
+                      className={`flex items-center gap-2 p-3 ${
+                        showText ? "" : "justify-center"
+                      } ${route === "/explore-nfts" ? "side-bar-active" : ""}`}
+                      onClick={() => setOpenSidBar(false)}
                     >
-                      {showText ? "Explore Assets" : ""}
-                    </span>
-                  </Link>
-                </li>
-                {/* <li
-                  className="pb-3"
-                  onMouseOver={onMouseOverHandler}
-                  onMouseLeave={onMouseLeaveHandler}
-                >
-                  <Link
-                    href="/create-nft"
-                    className={`flex items-center gap-2 p-3 ${
-                      showText ? "" : "justify-center"
-                    } ${route === "/create-nft" ? "side-bar-active" : ""}`}
-                    onClick={() => setOpenSidBar(false)}
+                      <span className="material-symbols-outlined">explore</span>
+                      <span
+                        className={`text-[var(--color-gray-4)] font-semibold text-[16px] leading-[130%]`}
+                      >
+                        {showText ? "Marketplace" : ""}
+                      </span>
+                    </Link>
+                  </li>
+                  <li
+                    className="pb-3"
+                    onMouseOver={onMouseOverHandler}
+                    onMouseLeave={onMouseLeaveHandler}
                   >
-                    <span className="material-symbols-outlined">
-                      add_circle
-                    </span>
-                    <span
-                      className={`text-[var(--color-gray-4)] font-semibold text-[16px] leading-[130%]`}
+                    <Link
+                      href="/login"
+                      className={`flex items-center gap-2 p-3 ${
+                        showText ? "" : "justify-center"
+                      } ${route === "/login" ? "side-bar-active" : ""}`}
+                      onClick={() => setOpenSidBar(false)}
                     >
-                      {showText ? "KYC" : ""}
-                    </span>
-                  </Link>
-                </li> */}
-             
-            
-                
-              </ul>
+                      <span className="material-symbols-outlined">login</span>
+                      <span
+                        className={`text-[var(--color-gray-4)] font-semibold text-[16px] leading-[130%]`}
+                      >
+                        {showText ? "Login" : ""}
+                      </span>
+                    </Link>
+                  </li>
+               
+              
+                  
+                </ul>
+                )
+              } 
+
             </div>
           </div>
 

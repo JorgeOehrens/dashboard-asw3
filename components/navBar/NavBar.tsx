@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import avatar_photo from "/public/images/user/user_1.png";
-import logo_icon from "/public/images/logo_icon.png";
+import logo_icon from "/public/images/asset_digital.png";
 import React, {useContext} from 'react';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import useTokenBalance from "@/lib/readBalanceTokens";
@@ -35,21 +35,6 @@ const NavBar = ({
   openSidBar,
 
 }: NavbarProps) => {
-  const isClient = useIsClient();
-
-  const [walletBalanceUSD, setWalletBalanceUSD] = useState(''); // Estado para almacenar el balance en USD
-
-  useEffect(() => {
-    const fetchBalances = async () => {
-      if (isClient) { // Solo intentamos cargar los balances si estamos en el lado del cliente
-
-        const usdBalance = await walletBalanceusd(); // Asumiendo que esta función devuelve el balance en USD
-        setWalletBalanceUSD(usdBalance); // Actualiza el estado con el balance en USD
-      }
-    };
-
-    fetchBalances();
-  }, [isClient]); // Este efect
 
 
 
@@ -70,32 +55,7 @@ const NavBar = ({
      
         </div>
         <div className="flex items-center gap-4 md:gap-8">
-          <Link
-            href="/"
-            className="hidden sm:flex items-center gap-2 px-3 py-2 bg-[var(--color-gray-3)] dark:bg-[var(--color-gray-5)] rounded-lg cursor-pointer"
-          >
-      
-            <div className="flex flex-col">
-            {isClient ? <h6 className="text-base font-bold"></h6> : <h6>0x...</h6>}
-              <div className="flex items-center gap-1 text-[#6F767E]">
-                {isClient ? <small>Balance: ${walletBalanceUSD}</small> : <small>Cargando balance...</small>}
-
-              </div>
-            </div>
-          </Link>
-          <Link
-            href="/"
-            className="hidden sm:flex items-center gap-2 px-3 py-2 bg-[var(--color-gray-3)] dark:bg-[var(--color-gray-5)] rounded-lg cursor-pointer"
-          >
-      
-            <div className="flex flex-col">
-            {isClient ? <h6 className="text-base font-bold"></h6> : <h6>0x...</h6>}
-              <div className="flex items-center gap-1 text-[#6F767E]">
-                {isClient ? <small>Earn Balance: $0</small> : <small>Cargando balance...</small>}
-
-              </div>
-            </div>
-          </Link>
+        
           <div className="flex items-center gap-3 md:gap-6">
                       <ConnectButton  />  
 

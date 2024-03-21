@@ -40,10 +40,8 @@ const Layout = ({ children }: LayoutProps) => {
 
   return (
     <>
-      {/* Preloader */}
       <Preloader />
 
-      {/* Search */}
       <Search isOpen={isOpen} setIsOpen={setIsOpen} />
 
       <div className="flex items-start">
