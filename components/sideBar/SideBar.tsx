@@ -247,7 +247,7 @@ const SideBar = ({ showText, setShowText, openSidBar, setOpenSidBar }: any) => {
                 ) : (
                   <ul>
                     
-<li
+                <li
                     className="pb-3"
                     onMouseOver={onMouseOverHandler}
                     onMouseLeave={onMouseLeaveHandler}
