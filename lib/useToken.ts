@@ -7,8 +7,11 @@ function useTokenSelect() {
   });
 
   // Aquí puedes acceder a data.name, data.symbol, etc.
+
+
+  const suply = data?.totalSupply
   
-  return { token: data, isError, isLoading };
+  return suply;
 }
 
 export default useTokenSelect;

@@ -3,10 +3,15 @@ import RadialBar from "../charts/RadialBar";
 
 
 
+type PropsType = {
+  balanceWalletETH: string;
+  balanceWalletUSD: string;
 
-const EarnBalance = () => {
+};
+
+const EarnBalance =  ({balanceWalletETH, balanceWalletUSD } : PropsType) => {
   return (
-    <BalanceCard balance="0" balance_usd="0" title="Earn Balance">
+    <BalanceCard balance={balanceWalletETH} balance_usd={balanceWalletUSD} title="Earn Balance">
       <div className="w-[52px] max-h-[52px] flex items-center justify-center">
         {/* Radial Bar */}
         <RadialBar lightColor="#0B6725" darkColor="#3bdc68" />

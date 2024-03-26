@@ -12,6 +12,10 @@ import walletBalanceusd from "@/utils/walletBalanceUSD";
 import { useAccount } from 'wagmi';
 import tokenBalance from "@/utils/tokenBalance";
 import getAllTransactions from "@/utils/transactionsToken";
+import withdrawBalanceUSD from "@/utils/withdrawBalanceUSD";
+
+import withdrawBalanceETH from "@/utils/withdrawBalanceETH";
+
 const useIsClient = () => {
   const [isClient, setIsClient] = useState(false);
 
@@ -35,6 +39,11 @@ const HomeMain = () => {
 
   const [balanceWalletETH, setBalanceWalletETH] = useState('0');
 
+
+  const [withdrawBalanceUSD1, setWithdrawBalanceUSD] = useState('0'); // Estado para almacenar el balance en USD
+
+  const [withdrawWalletETH, setWithdrawWalletETH] = useState('0');
+
   useEffect(() => {
     const fetchBalances = async () => {
       if (isClient) { // Solo intentamos cargar los balances si estamos en el lado del cliente
@@ -51,6 +60,16 @@ const HomeMain = () => {
         
         const usdBalance = await walletBalanceusd(); // Asumiendo que esta función devuelve el balance en USD
         setWalletBalanceUSD(usdBalance); // Actualiza el estado con el balance en USD
+
+ 
+        const usdWithdraw = await withdrawBalanceUSD();
+        setWithdrawBalanceUSD(usdWithdraw);
+
+         
+        const ethWithdraw = await withdrawBalanceETH();
+        setWithdrawWalletETH(usdWithdraw);
+
+
       }
     };
 
@@ -72,7 +91,8 @@ const HomeMain = () => {
 
           {/* Earn Balance Section */}
           <EarnBalance
-          
+                 balanceWalletETH={withdrawWalletETH}
+                 balanceWalletUSD={withdrawBalanceUSD1}
           />
         </div>
         <div className="bg-white dark:bg-[var(--color-gray-7)] rounded-lg shadow-[0px_1px_2px_rgba(0,0,0,0.2)]">

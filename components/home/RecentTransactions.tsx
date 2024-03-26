@@ -51,9 +51,7 @@ const RecentTransactions = () => {
         <h5 className="text-lg leading-[150%] font-bold">
           Recent Transactions
         </h5>
-        <Link href="/" className="text-lg leading-[150%] text-[var(--color-primary)]">
-          View All
-        </Link>
+      
       </div>
 
   

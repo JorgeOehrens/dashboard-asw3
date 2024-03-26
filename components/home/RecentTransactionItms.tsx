@@ -7,14 +7,6 @@ import btc from "/public/images/icon/ethereum.png";
 import tenx from "/public/images/icon/tenx.png";
 import aw3 from "/public/images/asset_digital_sm2.png";;
 
-// Función para convertir de wei a ether
-const convertWeiToEther = (hexValue: string) => {
-  // Convertir el valor hex a número entero
-  const weiValue = parseInt(hexValue, 16);
-  // Convertir de wei a ether (1 ether = 10^18 wei)
-  const etherValue = weiValue / 10**18;
-  return etherValue;
-};
 
 const TransactionItems = ({ transactions }: { transactions: Transaction[] }) => {
   const [collapsed, setCollapsed] = useState("");

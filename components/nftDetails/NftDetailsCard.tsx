@@ -1,6 +1,8 @@
 import Image from "next/image";
 import verify from "/public/images/icon/verify.png";
 import nft_details from "/public/images/nft/logo.jpg";
+import { Progress } from "flowbite-react";
+
 import user_2 from "/public/images/user/logo2.jpg";
 import BuyToken from "@/utils/buyToken";
 import tokenPriceEth from "@/utils/tokenPrice";
@@ -12,6 +14,7 @@ import EarnBalance from "@/components/home/EarnBalance";
 import { useState, useEffect } from "react";
 import btc from "/public/images/asset_digital.png";
 import Select from "../common/Select";
+import supplyMax from "@/utils/maxSuply";
 
 const useIsClient = () => {
   const [isClient, setIsClient] = useState(false);
@@ -33,22 +36,23 @@ const NftDetailsCard = () => {
   const handleSwap = () => {
     setSwap(!swap);
   };
-  const [priceTokenUSD2, setPriceTokenUSD2] = useState('0'); // Para almacenar el precio del token en USD
-  const [walletBalanceUSD, setWalletBalanceUSD] = useState('0'); // Estado para almacenar el balance en USD
+  const [maxSupply, setMaxSupply] = useState('0');
+  const [priceTokenUSD2, setPriceTokenUSD2] = useState('0');
+  const [walletBalanceUSD, setWalletBalanceUSD] = useState('0'); 
 
   const [balanceWalletETH, setBalanceWalletETH] = useState('0');
-  const [priceTokenUSD, setPriceTokenUSD] = useState('0'); // Para almacenar el precio del token en USD
-  const [earnBalanceUSD, setEarnBalanceUSD] = useState('0'); // Para almacenar el "Earn balance" en USD
+  const [priceTokenUSD, setPriceTokenUSD] = useState('0');
+  const [earnBalanceUSD, setEarnBalanceUSD] = useState('0');
 
-  const [tokenPrice, settokenPrice] = useState('0'); // Estado para almacenar el balance en USD
-  const [ethPrice, setethPrice] = useState('0'); // Estado para almacenar el balance en USD
-  const [ethToPay, setEthToPay] = useState('0'); // Nuevo estado para almacenar ETH a pagar
-  const [usdConversion, setUsdConversion] = useState('0'); // New state for storing USD conversion value
-  const [earnBalance, setEarnBalance] = useState('0'); // Nuevo estado para "Earn balance"
+  const [tokenPrice, settokenPrice] = useState('0'); 
+  const [ethPrice, setethPrice] = useState('0'); 
+  const [ethToPay, setEthToPay] = useState('0');
+  const [usdConversion, setUsdConversion] = useState('0'); 
+  const [earnBalance, setEarnBalance] = useState('0'); 
 
   useEffect(() => {
     const fetchBalances = async () => {
-      if (isClient) { // Solo intentamos cargar los balances si estamos en el lado del cliente
+      if (isClient) { 
 
 
         
@@ -61,6 +65,10 @@ const NftDetailsCard = () => {
         setWalletBalanceUSD(usdBalance); // Actualiza el estado con el balance en USD
         const ethBalance = await walletBalanceETH();
         setBalanceWalletETH(ethBalance);
+
+        const suply = await supplyMax();
+        setMaxSupply(suply);
+
         
       }
     };
@@ -129,7 +137,26 @@ useEffect(() => {
   return (
     <div className="flex flex-col xl:flex-row items-center justify-between gap-5 2xl:gap-0 bg-white dark:bg-[var(--color-gray-7)] rounded-lg shadow-[0px_1px_2px_rgba(0,0,0,0.25)] p-2 lg:p-5">
       <div className="w-full xl:w-6/12 rounded-lg overflow-hidden">
+        {maxSupply}
+
         <Image src={nft_details} alt="nft_details" className="w-full" />
+        <p className="flex items-center justify-between text-xl leading-[150%]">
+            <span className="text-[var(--color-gray-4)] dark:text-[var(--color-gray-3)]">
+              Price Token USD
+            </span>
+            <span className="text-[var(--color-gray-5)] dark:text-[var(--color-gray-2)]">
+            ${priceTokenUSD} USD 
+            </span>
+          </p>
+        <p className="flex items-center justify-between text-xl leading-[150%]">
+            <span className="text-[var(--color-gray-4)] dark:text-[var(--color-gray-3)]">
+              Price Token ETH
+            </span>
+            <span className="text-[var(--color-gray-5)] dark:text-[var(--color-gray-2)]">
+            {tokenPrice} ETH
+            </span>
+          </p>
+         
       </div>
       <div className="w-full xl:w-6/12 2xl:w-5/12">
         
@@ -137,7 +164,7 @@ useEffect(() => {
      
         <div className="max-w-[504px] m-auto border dark:border-[#3C4145] py-5 px-4 sm:px-8 bg-white dark:bg-[var(--color-gray-7)] rounded-lg shadow-[0px_1px_1px_rgba(0,0,0,0.25)]">
         <h3 className="text-2xl sm:text-[32px] font-semibold leading-[120%] text-[var(--color-gray-7)] dark:text-white">
-        Tanglewood Racquet Village Token
+        Tanglewood Racquet Village Token 
         </h3>
 
         <div className="flex flex-col min-[376px]:flex-row items-start min-[422px]:items-center gap-3 min-[422px]:gap-8 mt-3 sm:mt-6">
