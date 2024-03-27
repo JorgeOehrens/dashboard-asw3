@@ -7,7 +7,6 @@ import btc from "/public/images/icon/ethereum.png";
 import tenx from "/public/images/icon/tenx.png";
 import aw3 from "/public/images/asset_digital_sm2.png";;
 
-
 const TransactionItems = ({ transactions }: { transactions: Transaction[] }) => {
   const [collapsed, setCollapsed] = useState("");
 
@@ -20,7 +19,9 @@ const TransactionItems = ({ transactions }: { transactions: Transaction[] }) => 
   }
 
   return (
+    
     <>
+        
       {transactions.map((transaction, index) => (
         <div
           key={index}

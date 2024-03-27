@@ -1,5 +1,21 @@
 import PriceChart from "../charts/PriceChart";
-
+const documentData = [
+  {
+    id: "doc1",
+    title: "APPRAISAL",
+    url: "https://www.assetsweb3.com/assets/doc1-a6439719.pdf",
+  },
+  {
+    id: "doc2",
+    title: "REGLAMENTO INTERNO",
+    url: "https://www.assetsweb3.com/assets/doc2-f9347f43.pdf",
+  },
+  {
+    id: "doc3",
+    title: "CLOSING INSTRUCTION",
+    url: "https://www.assetsweb3.com/assets/doc3-35f79f0c.pdf",
+  },
+];
 const Descriptions = () => {
   return (
     <div className="cls">
@@ -17,7 +33,25 @@ The apartment units range in size from 658 to 1,252 square feet
 with an average size at 827 square feet. Storage units includes a
 mix of 106-4’ x 8’ and 326 - 6’ x 8’ units. 
       </p>
-      
+      <h6 className="text-2xl leading-[150%] font-bold text-[var(--color-gray-6)] dark:text-white ">
+        Documents
+      </h6>
+      <div className="mt-5 flex flex-col gap-5">
+          {documentData.map((file) => (
+            <a
+              key={file.id}
+              href={file.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 p-2 border border-gray-300 rounded-lg hover:border-gray-400 transition-colors"
+            >
+                    <span className="material-symbols-outlined">
+                    file_download
+                    </span>
+              <span className="text-[var(--color-gray-7)] dark:text-white">{file.title}</span>
+            </a>
+          ))}
+        </div>
       {/* <div className="mt-6 rounded-lg overflow-hidden">
         <div className="flex items-center flex-wrap justify-between gap-3 bg-white dark:bg-[var(--color-gray-7)] px-3 xl:px-6 pt-5 pb-7">
           <h6 className="text-2xl leading-[150%] font-bold text-[var(--color-gray-6)] dark:text-white -mt-1">

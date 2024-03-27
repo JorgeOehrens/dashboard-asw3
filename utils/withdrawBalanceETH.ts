@@ -31,7 +31,7 @@ const withdrawBalanceETH = async () => {
 
     const balanceWallet = parseFloat(priceInEth) * parseFloat(tokensInEth);
 
-    const balanceWithdraw = balanceWallet * 0.007;
+    const balanceWithdraw = balanceWallet * 0.07;
 
 
     return balanceWithdraw.toString(); // Este es el valor que quieres obtener
