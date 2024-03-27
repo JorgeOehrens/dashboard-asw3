@@ -11,7 +11,9 @@ import WalletBalance from "@/components/home/WalletBalance";
 import EarnBalance from "@/components/home/EarnBalance";
 import trv from "@/public/images/asset_digital_sm2.png";
 import Withdraw from "@/utils/withdraw";
+import withdrawBalanceUSD from "@/utils/withdrawBalanceUSD";
 
+import withdrawBalanceETH from "@/utils/withdrawBalanceETH";
 const useIsClient = () => {
   const [isClient, setIsClient] = useState(false);
 
@@ -35,7 +37,9 @@ const LiquidityMain = () => {
   const [swap, setSwap] = useState(false);
   const [walletBalanceUSD, setWalletBalanceUSD] = useState('0'); // Estado para almacenar el balance en USD
   const [nToken, setNToken] = useState(""); // Estado para manejar la entrada de número de tokens
+  const [withdrawBalanceUSD1, setWithdrawBalanceUSD] = useState('0'); // Estado para almacenar el balance en USD
 
+  const [withdrawWalletETH, setWithdrawWalletETH] = useState('0');
   const [balanceWalletETH, setBalanceWalletETH] = useState('0');
   const handleWithdraw = async () => {
     if(isClient) { // Si el cliente está conectado, intenta comprar tokens
@@ -55,7 +59,12 @@ const LiquidityMain = () => {
         setWalletBalanceUSD(usdBalance); // Actualiza el estado con el balance en USD
         const ethBalance = await walletBalanceETH();
         setBalanceWalletETH(ethBalance);
-        
+        const usdWithdraw = await withdrawBalanceUSD();
+        setWithdrawBalanceUSD(usdWithdraw);
+
+         
+        const ethWithdraw = await withdrawBalanceETH();
+        setWithdrawWalletETH(ethWithdraw);
       }
     };
 
@@ -75,7 +84,8 @@ const LiquidityMain = () => {
 
            />
        <EarnBalance
-          
+                    balanceWalletETH={withdrawWalletETH}
+                    balanceWalletUSD={withdrawBalanceUSD1}
           />
         
         </div>

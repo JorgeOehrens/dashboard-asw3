@@ -12,7 +12,9 @@ import walletBalanceETH from "@/utils/walletBalanceETH";
 import walletBalanceusd from "@/utils/walletBalanceUSD";
 import WalletBalance from "@/components/home/WalletBalance";
 import EarnBalance from "@/components/home/EarnBalance";
+import withdrawBalanceUSD from "@/utils/withdrawBalanceUSD";
 
+import withdrawBalanceETH from "@/utils/withdrawBalanceETH";
 
 const useIsClient = () => {
   const [isClient, setIsClient] = useState(false);
@@ -46,7 +48,9 @@ const SwapMain = () => {
   const [ethToPay, setEthToPay] = useState('0'); // Nuevo estado para almacenar ETH a pagar
   const [usdConversion, setUsdConversion] = useState('0'); // New state for storing USD conversion value
   const [earnBalance, setEarnBalance] = useState('0'); // Nuevo estado para "Earn balance"
+  const [withdrawBalanceUSD1, setWithdrawBalanceUSD] = useState('0'); // Estado para almacenar el balance en USD
 
+  const [withdrawWalletETH, setWithdrawWalletETH] = useState('0');
   useEffect(() => {
     const fetchBalances = async () => {
       if (isClient) { // Solo intentamos cargar los balances si estamos en el lado del cliente
@@ -62,7 +66,12 @@ const SwapMain = () => {
         setWalletBalanceUSD(usdBalance); // Actualiza el estado con el balance en USD
         const ethBalance = await walletBalanceETH();
         setBalanceWalletETH(ethBalance);
-        
+        const usdWithdraw = await withdrawBalanceUSD();
+        setWithdrawBalanceUSD(usdWithdraw);
+
+         
+        const ethWithdraw = await withdrawBalanceETH();
+        setWithdrawWalletETH(ethWithdraw);
       }
     };
 
@@ -138,7 +147,8 @@ useEffect(() => {
 
            />
        <EarnBalance
-          
+                              balanceWalletETH={withdrawWalletETH}
+                              balanceWalletUSD={withdrawBalanceUSD1}
           />
         
         </div>

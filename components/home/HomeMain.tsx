@@ -67,7 +67,7 @@ const HomeMain = () => {
 
          
         const ethWithdraw = await withdrawBalanceETH();
-        setWithdrawWalletETH(usdWithdraw);
+        setWithdrawWalletETH(ethWithdraw);
 
 
       }
@@ -90,9 +90,9 @@ const HomeMain = () => {
            </Suspense>
 
           {/* Earn Balance Section */}
-          <EarnBalance
-                 balanceWalletETH={withdrawWalletETH}
+          <EarnBalance          balanceWalletETH={withdrawWalletETH}
                  balanceWalletUSD={withdrawBalanceUSD1}
+       
           />
         </div>
         <div className="bg-white dark:bg-[var(--color-gray-7)] rounded-lg shadow-[0px_1px_2px_rgba(0,0,0,0.2)]">

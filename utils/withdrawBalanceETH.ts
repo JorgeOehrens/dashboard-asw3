@@ -34,7 +34,7 @@ const withdrawBalanceETH = async () => {
     const balanceWithdraw = balanceWallet * 0.007;
 
 
-    return balanceWallet; // Este es el valor que quieres obtener
+    return balanceWithdraw.toString(); // Este es el valor que quieres obtener
 };
 
 export default withdrawBalanceETH;
