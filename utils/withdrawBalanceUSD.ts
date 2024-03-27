@@ -18,8 +18,8 @@ const withdrawBalanceUSD = async () => {
     const totalAmountUSD = parseFloat(usdPerEth) * walletETH;
 
     // Calcula el 0.7% del saldo en USD
-    const withdrawAmountUSD = totalAmountUSD * 0.07; // 0.7% del total
-    const withdrawAmountUSDNoDecimals = Math.floor(withdrawAmountUSD);
+    const withdrawAmountUSD = totalAmountUSD * 0.007; // 0.7% del total
+    const withdrawAmountUSDNoDecimals = withdrawAmountUSD;
 
     console.log('USD per ETH:', usdPerEth);
     console.log('Withdraw amount in USD:', withdrawAmountUSDNoDecimals);

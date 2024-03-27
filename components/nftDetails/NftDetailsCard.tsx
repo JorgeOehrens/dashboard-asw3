@@ -137,8 +137,13 @@ useEffect(() => {
   return (
     <div className="flex flex-col xl:flex-row items-center justify-between gap-5 2xl:gap-0 bg-white dark:bg-[var(--color-gray-7)] rounded-lg shadow-[0px_1px_2px_rgba(0,0,0,0.25)] p-2 lg:p-5">
       <div className="w-full xl:w-6/12 rounded-lg overflow-hidden">
-        {maxSupply}
+      <h3 className="text-2xl sm:text-[25px] font-semibold leading-[120%] text-[var(--color-gray-7)] dark:text-white">
+        Max Supply
+        </h3>
+        <p className="text-l sm:text-[18px] font-semibold leading-[120%] text-[var(--color-gray-4)] dark:text-white">
+               {maxSupply} Tokens / 4900 tokens
 
+              </p>
         <Image src={nft_details} alt="nft_details" className="w-full" />
         <p className="flex items-center justify-between text-xl leading-[150%]">
             <span className="text-[var(--color-gray-4)] dark:text-[var(--color-gray-3)]">
@@ -281,23 +286,7 @@ useEffect(() => {
               ${earnBalanceUSD} USD
             </span>
           </p>
-          {/*
-          <p className="flex items-center justify-between text-sm leading-[150%]">
-            <span className="text-[var(--color-gray-4)] dark:text-[var(--color-gray-3)]">
-              Pool liquidity (ETH)
-            </span>
-            <span className="text-[var(--color-gray-5)] dark:text-[var(--color-gray-2)]">
-              58,982.95 ETH
-            </span>
-          </p>
-          <p className="flex items-center justify-between text-sm leading-[150%]">
-            <span className="text-[var(--color-gray-4)] dark:text-[var(--color-gray-3)]">
-              LP supply
-            </span>
-            <span className="text-[var(--color-gray-5)] dark:text-[var(--color-gray-2)]">
-              1,532,352.00 LP
-            </span>
-          </p> */}
+        
         </div>
 
         

@@ -2,17 +2,17 @@ import PriceChart from "../charts/PriceChart";
 const documentData = [
   {
     id: "doc1",
-    title: "APPRAISAL",
+    title: "Appraisal",
     url: "https://www.assetsweb3.com/assets/doc1-a6439719.pdf",
   },
   {
     id: "doc2",
-    title: "REGLAMENTO INTERNO",
+    title: "Rules of Procedure",
     url: "https://www.assetsweb3.com/assets/doc2-f9347f43.pdf",
   },
   {
     id: "doc3",
-    title: "CLOSING INSTRUCTION",
+    title: "Closing Instructions",
     url: "https://www.assetsweb3.com/assets/doc3-35f79f0c.pdf",
   },
 ];
