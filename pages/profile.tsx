@@ -1,5 +1,7 @@
-import ProfileMain from "@/components/profile/ProfileMain";
+// import ProfileMain from "@/components/profile/ProfileMain";
 
 export default function Profile() {
-  return <ProfileMain />;
+  return (
+    <div></div>
+  )
 }

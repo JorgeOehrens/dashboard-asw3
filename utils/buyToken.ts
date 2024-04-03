@@ -1,9 +1,9 @@
 import connectingTOKENSALEContract from "@/lib/useSaleContract";
 import { ethers } from "ethers";
 
-const BuyToken = async (nToken: string) => {
+const BuyToken = async (nToken: string,address: string) => {
     try {
-        const TOKEN_SALE_CONTRACT = await connectingTOKENSALEContract();
+        const TOKEN_SALE_CONTRACT = await connectingTOKENSALEContract(address);
         
         if (!TOKEN_SALE_CONTRACT) {
             throw new Error("Error al conectar con el contrato de venta de tokens");

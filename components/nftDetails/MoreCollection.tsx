@@ -12,10 +12,10 @@ const MoreCollection = () => {
         More Assets Digital
       </h6>
       <div className="w-full grid grid-cols-1 min-[456px]:grid-cols-2 min-[1076px]:grid-cols-3 2xl:grid-cols-4 gap-3 xl:gap-6 mt-5">
-        
+{/*         
         {nftExploreData.slice(0, 4).map((itm, i) => (
           <NftCard key={itm.id} data={itm} />
-        ))}
+        ))} */}
       </div>
     </div>
   );

@@ -4,18 +4,32 @@ import eth from "/public/images/icon/ethereum.png";
 import verify from "/public/images/icon/verify.png";
 import tokenPriceEth from "@/utils/tokenPrice";
 import ethPriceUsd from "@/utils/ethPriceUsd";
+
+interface DocumentData {
+  id: string;
+  title: string;
+  url: string;
+}
 type PropeType = {
   data: {
-    id: number | string;
-    deg: string;
-    title: string;
+    id: number;
     img: StaticImageData;
-    avt: StaticImageData;
+    icon: StaticImageData;
+    name: string;
+    symbol: string;
+    price: number;
+    price_etc: number;
+    maxSupply: number;
+    adress_token: string;
+    adress_parity: string;
+    adress_sales: string;
+    description: string;
+    documData: DocumentData[];
   };
 };
 
 const NftCard = ({ data }: PropeType) => {
-  const { id, deg, title, img, avt } = data;
+  const { id, price,price_etc, name, symbol,img, maxSupply ,icon} = data;
 
   return (
     <div className="bg-white dark:bg-[var(--color-gray-6)] rounded-lg p-3">
@@ -28,16 +42,16 @@ const NftCard = ({ data }: PropeType) => {
           />
         </Link>
         <div className="absolute right-5 -bottom-5 w-10 h-10 border-2 border-[var(--color-gray-5)] rounded-lg overflow-hidden">
-          <Image src={avt} alt="user_1" className="flex-shrink-0" />
+          <Image src={icon} alt="user_1" className="flex-shrink-0" />
         </div>
  
         <div className="absolute bottom-20 left-3 flex items-center gap-2 p-1 bg-[#111315] bg-opacity-50 rounded-3xl">
-          <span className="mr-1 text-white">$1,900 USD </span>
+          <span className="mr-1 text-white">${price} USD </span>
 
         </div>
         <div className="absolute bottom-10 left-3 flex items-center gap-2 p-1 bg-[#111315] bg-opacity-50 rounded-3xl">
           <Image src={eth} alt="eth" />
-          <span className="mr-1 text-white">0.01 ETH min </span>
+          <span className="mr-1 text-white">{price_etc} ETH </span>
 
         </div>
         
@@ -45,12 +59,12 @@ const NftCard = ({ data }: PropeType) => {
       </div>
       <div className="mt-7">
         <p className="flex items-center gap-3 text-base leading-[150%] text-[var(--color-gray-4)] dark:text-[var(--color-gray-3)]">
-          {deg}
+          {symbol}
           <Image src={verify} alt="verify" />
         </p>
         <Link href="/nft-details">
           <h6 className="font-bold text-[var(--color-gray-6)] dark:text-white mt-3">
-            {title}
+            {name}
           </h6>
         </Link>
       </div>

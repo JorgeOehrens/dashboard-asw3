@@ -47,7 +47,7 @@ const TransactionItems = ({ transactions }: { transactions: Transaction[] }) => 
                 </h6>
               </div>
               <p className="text-xs leading-[150%] text-[var(--color-gray-4)]">
-                02/17/2023 4:27 PM
+                27/03/2024 
               </p>
             </div>
 

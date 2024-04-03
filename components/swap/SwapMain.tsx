@@ -13,7 +13,7 @@ import walletBalanceusd from "@/utils/walletBalanceUSD";
 import WalletBalance from "@/components/home/WalletBalance";
 import EarnBalance from "@/components/home/EarnBalance";
 import withdrawBalanceUSD from "@/utils/withdrawBalanceUSD";
-
+import MarketData from "../nftDetails/bidHistory";
 import withdrawBalanceETH from "@/utils/withdrawBalanceETH";
 
 const useIsClient = () => {
@@ -26,6 +26,7 @@ const useIsClient = () => {
 
   return isClient;
 };
+
 const coins = [
   { id: 1, name: "TRV", icon: btc },];
 
@@ -36,34 +37,35 @@ const SwapMain = () => {
   const handleSwap = () => {
     setSwap(!swap);
   };
-  const [priceTokenUSD2, setPriceTokenUSD2] = useState('0'); // Para almacenar el precio del token en USD
-  const [walletBalanceUSD, setWalletBalanceUSD] = useState('0'); // Estado para almacenar el balance en USD
+  const [priceTokenUSD2, setPriceTokenUSD2] = useState('0'); 
+  const [walletBalanceUSD, setWalletBalanceUSD] = useState('0'); 
+  const [selectedToken, setSelectedToken] = useState(MarketData[0]);
 
   const [balanceWalletETH, setBalanceWalletETH] = useState('0');
-  const [priceTokenUSD, setPriceTokenUSD] = useState('0'); // Para almacenar el precio del token en USD
-  const [earnBalanceUSD, setEarnBalanceUSD] = useState('0'); // Para almacenar el "Earn balance" en USD
+  const [priceTokenUSD, setPriceTokenUSD] = useState('0'); 
+  const [earnBalanceUSD, setEarnBalanceUSD] = useState('0'); 
 
-  const [tokenPrice, settokenPrice] = useState('0'); // Estado para almacenar el balance en USD
-  const [ethPrice, setethPrice] = useState('0'); // Estado para almacenar el balance en USD
-  const [ethToPay, setEthToPay] = useState('0'); // Nuevo estado para almacenar ETH a pagar
-  const [usdConversion, setUsdConversion] = useState('0'); // New state for storing USD conversion value
-  const [earnBalance, setEarnBalance] = useState('0'); // Nuevo estado para "Earn balance"
-  const [withdrawBalanceUSD1, setWithdrawBalanceUSD] = useState('0'); // Estado para almacenar el balance en USD
+  const [tokenPrice, settokenPrice] = useState('0'); 
+  const [ethPrice, setethPrice] = useState('0'); 
+  const [ethToPay, setEthToPay] = useState('0'); 
+  const [usdConversion, setUsdConversion] = useState('0'); 
+  const [earnBalance, setEarnBalance] = useState('0'); 
+  const [withdrawBalanceUSD1, setWithdrawBalanceUSD] = useState('0'); 
 
   const [withdrawWalletETH, setWithdrawWalletETH] = useState('0');
   useEffect(() => {
     const fetchBalances = async () => {
-      if (isClient) { // Solo intentamos cargar los balances si estamos en el lado del cliente
+      if (isClient) { 
 
 
         
         const ethPrice1 = await ethPriceUsd();
         setethPrice(ethPrice1);
 
-        const tokenBalance1 = await tokenPriceEth();
+        const tokenBalance1 = await tokenPriceEth(MarketData[0].adress_sales);
         settokenPrice(tokenBalance1);
-        const usdBalance = await walletBalanceusd(); // Asumiendo que esta función devuelve el balance en USD
-        setWalletBalanceUSD(usdBalance); // Actualiza el estado con el balance en USD
+        const usdBalance = await walletBalanceusd();
+        setWalletBalanceUSD(usdBalance); 
         const ethBalance = await walletBalanceETH();
         setBalanceWalletETH(ethBalance);
         const usdWithdraw = await withdrawBalanceUSD();
@@ -80,12 +82,12 @@ const SwapMain = () => {
 
   
 
-  const [nToken, setNToken] = useState(""); // Estado para manejar la entrada de número de tokens
+  const [nToken, setNToken] = useState("");
   useEffect(() => {
   const calculateEthToPay = () => {
-    if ((tokenPrice) !="0"&& (nToken) !="0") { // Ensure both values are not NaN
+    if ((tokenPrice) !="0"&& (nToken) !="0") { 
       const ethToPayCalculated = Number(tokenPrice) * Number(nToken);
-      setEthToPay(ethToPayCalculated.toFixed(2)); // Update ethToPay state
+      setEthToPay(ethToPayCalculated.toFixed(2));
     }
   };
 
@@ -95,7 +97,7 @@ const SwapMain = () => {
 useEffect(() => {
   const calculateUsdConversion = () => {
     const usdValue = Number(ethToPay) * Number(ethPrice);
-    setUsdConversion(usdValue.toFixed(2)); // Update USD conversion state
+    setUsdConversion(usdValue.toFixed(2));
     
   };
 
@@ -103,13 +105,13 @@ useEffect(() => {
 }, [ethToPay, ethPrice]);
 useEffect(() => {
   const calculateEarnBalance = () => {
-    const months = 36; // 3 años * 12 meses
-    const monthlyInterest = 0.007; // 0.7% interés mensual
+    const months = 36;
+    const monthlyInterest = 0.007; 
     if (ethToPay !== '0') {
       const earnBalanceCalculated = Number(ethToPay) * monthlyInterest * months;
-      setEarnBalance(earnBalanceCalculated.toFixed(2)); // Actualiza el estado de "Earn balance"
+      setEarnBalance(earnBalanceCalculated.toFixed(2)); 
       const earnBalanceCalculatedUSD = earnBalanceCalculated * Number(ethPrice);
-      setEarnBalanceUSD(earnBalanceCalculatedUSD.toFixed(2)); // Actualiza el estado de "Earn balance" en USD
+      setEarnBalanceUSD(earnBalanceCalculatedUSD.toFixed(2)); 
 
 
       
@@ -119,8 +121,10 @@ useEffect(() => {
   calculateEarnBalance();
 }, [ethToPay]);
   const handleBuyToken = async () => {
-    if(isClient) { // Si el cliente está conectado, intenta comprar tokens
-      await BuyToken(nToken); // Llama a tu función BuyToken con el número de tokens
+    if(isClient) { 
+      console.log(selectedToken.adress_sales);
+
+      await BuyToken(nToken, selectedToken.adress_sales);
     } else {
       console.log("---");
     }
@@ -136,7 +140,13 @@ useEffect(() => {
   
     calculatePriceTokenUSD();
   }, [tokenPrice, ethPrice]);
-  
+  const handleTokenChange =async (token: any) => {
+    setSelectedToken(token);
+    const tokenBalance1 = await tokenPriceEth(token.adress_sales);
+    settokenPrice(tokenBalance1);
+    
+
+  };
   return (
     <section className="w-full h-[77vh] sm:h-[100vh]">
            <div className="grid grid-cols-2 gap-4 mb-6">
@@ -180,7 +190,7 @@ useEffect(() => {
           <div className="flex items-center justify-between border dark:border-[#3C4145] px-2 sm:px-5 py-1 sm:py-3 rounded-lg mt-3 dark:bg-[var(--color-gray-6)]">
             <div className="min-w-[113px] relative">
               {/* Select */}
-              <Select data={coins} />
+              <Select data={MarketData} onChange={handleTokenChange}/>
             </div>
             <div className="flex flex-1 flex-col items-end border-l dark:border-[#3C4145]">
             <input

@@ -32,21 +32,21 @@ const HomeMain = () => {
 
   const isClient = useIsClient();
 
-  const [tokenBalance2, settokenBalance] = useState('0'); // Estado para almacenar el balance en USD
+  const [tokenBalance2, settokenBalance] = useState('0');
 
 
-  const [walletBalanceUSD, setWalletBalanceUSD] = useState('0'); // Estado para almacenar el balance en USD
+  const [walletBalanceUSD, setWalletBalanceUSD] = useState('0');
 
   const [balanceWalletETH, setBalanceWalletETH] = useState('0');
 
 
-  const [withdrawBalanceUSD1, setWithdrawBalanceUSD] = useState('0'); // Estado para almacenar el balance en USD
+  const [withdrawBalanceUSD1, setWithdrawBalanceUSD] = useState('0'); 
 
   const [withdrawWalletETH, setWithdrawWalletETH] = useState('0');
 
   useEffect(() => {
     const fetchBalances = async () => {
-      if (isClient) { // Solo intentamos cargar los balances si estamos en el lado del cliente
+      if (isClient) { 
         const ethBalance = await walletBalanceETH();
         setBalanceWalletETH(ethBalance);
 
@@ -58,9 +58,8 @@ const HomeMain = () => {
         const tokenBalance1 = await tokenBalance();
         settokenBalance(tokenBalance1);
         
-        const usdBalance = await walletBalanceusd(); // Asumiendo que esta función devuelve el balance en USD
-        setWalletBalanceUSD(usdBalance); // Actualiza el estado con el balance en USD
-
+        const usdBalance = await walletBalanceusd();
+        setWalletBalanceUSD(usdBalance); 
  
         const usdWithdraw = await withdrawBalanceUSD();
         setWithdrawBalanceUSD(usdWithdraw);

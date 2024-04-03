@@ -15,6 +15,7 @@ import { useState, useEffect } from "react";
 import btc from "/public/images/asset_digital.png";
 import Select from "../common/Select";
 import supplyMax from "@/utils/maxSuply";
+import MarketData from "../nftDetails/bidHistory";
 
 const useIsClient = () => {
   const [isClient, setIsClient] = useState(false);
@@ -59,7 +60,7 @@ const NftDetailsCard = () => {
         const ethPrice1 = await ethPriceUsd();
         setethPrice(ethPrice1);
 
-        const tokenBalance1 = await tokenPriceEth();
+        const tokenBalance1 = await tokenPriceEth(MarketData[0].adress_sales);
         settokenPrice(tokenBalance1);
         const usdBalance = await walletBalanceusd(); // Asumiendo que esta función devuelve el balance en USD
         setWalletBalanceUSD(usdBalance); // Actualiza el estado con el balance en USD
@@ -118,7 +119,7 @@ useEffect(() => {
 }, [ethToPay]);
   const handleBuyToken = async () => {
     if(isClient) { // Si el cliente está conectado, intenta comprar tokens
-      await BuyToken(nToken); // Llama a tu función BuyToken con el número de tokens
+      await BuyToken(nToken,MarketData[0].adress_sales); // Llama a tu función BuyToken con el número de tokens
     } else {
       console.log("---");
     }

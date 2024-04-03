@@ -1,9 +1,13 @@
 import { Listbox, Transition } from "@headlessui/react";
 import Image from "next/image";
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 
-const Select = ({ data }: any) => {
+const Select = ({ data, onChange }: { data: any; onChange: (token: any) => void  }) => {
   const [selected, setSelected] = useState(data[0]);
+  useEffect(() => {
+    onChange(selected);
+  }, [selected, onChange]);
+
 
   return (
     <Listbox value={selected} onChange={setSelected}>
@@ -11,6 +15,7 @@ const Select = ({ data }: any) => {
         <Listbox.Button className="flex items-center relative w-full text-sm font-bold text-[var(--color-gray-5)] dark:text-white uppercase">
           <Image src={selected?.icon} alt="icon" />
           <span className="pl-2 pr-5">{selected?.name}</span>
+
           <span className="material-symbols-outlined">expand_more</span>
         </Listbox.Button>
         <Transition as={Fragment}>

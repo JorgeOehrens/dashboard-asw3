@@ -12,6 +12,7 @@ import EarnBalance from "@/components/home/EarnBalance";
 import trv from "@/public/images/asset_digital_sm2.png";
 import Withdraw from "@/utils/withdraw";
 import withdrawBalanceUSD from "@/utils/withdrawBalanceUSD";
+import MarketData from "../nftDetails/bidHistory";
 
 import withdrawBalanceETH from "@/utils/withdrawBalanceETH";
 const useIsClient = () => {
@@ -38,6 +39,7 @@ const LiquidityMain = () => {
   const [walletBalanceUSD, setWalletBalanceUSD] = useState('0'); // Estado para almacenar el balance en USD
   const [nToken, setNToken] = useState(""); // Estado para manejar la entrada de número de tokens
   const [withdrawBalanceUSD1, setWithdrawBalanceUSD] = useState('0'); // Estado para almacenar el balance en USD
+  const [selectedToken, setSelectedToken] = useState(MarketData[0]);
 
   const [withdrawWalletETH, setWithdrawWalletETH] = useState('0');
   const [balanceWalletETH, setBalanceWalletETH] = useState('0');
@@ -73,7 +75,12 @@ const LiquidityMain = () => {
   const handleSwap = () => {
     setSwap(!swap);
   };
+  const handleTokenChange =async (token: any) => {
+    setSelectedToken(token);
+    console.log(token);
+    
 
+  };
   return (
     <section className="w-full h-auto sm:h-[100vh]">
                  <div className="grid grid-cols-2 gap-4 mb-6">
@@ -114,7 +121,7 @@ const LiquidityMain = () => {
             TOKENS
             </div>
             <div className="flex flex-1 flex-col items-end border-l dark:border-[#3C4145]">
-            <Select data={tokensLiquidity} />
+            <Select data={MarketData}  onChange={handleTokenChange}/>
             </div>
           </div>
         </div>
@@ -145,7 +152,6 @@ const LiquidityMain = () => {
           <div className="flex items-center justify-between border dark:border-[#3C4145] px-2 sm:px-5 py-1 sm:py-3 rounded-lg mt-3 dark:bg-[var(--color-gray-6)]">
             <div className="min-w-[113px]">
               {/* Select */}
-              <Select data={coinsLiquidity} />
             </div>
             <div className="flex flex-1 flex-col items-end border-l dark:border-[#3C4145]">
 
