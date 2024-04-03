@@ -1,16 +1,9 @@
 import { useMemo } from "react";
 import Table from "../common/Table";
-import binance from "/public/images/icon/binance.png";
-import btc from "/public/images/icon/btc.png";
 import doge from "/public/images/asset_digital.png";;
-import ethereum from "/public/images/icon/ethereum.png";
-import litecoin from "/public/images/icon/litecoin.png";
-import loopring from "/public/images/icon/loopring.png";
-import monero from "/public/images/icon/monero.png";
-import ripple from "/public/images/icon/ripple.png";
-import tenx from "/public/images/icon/tenx.png";
-import tether from "/public/images/icon/tether.png";
-import user_2 from "/public/images/user/logo2.jpg";
+import MarketData from "../nftDetails/bidHistory";
+import icon2 from "/public/images/icon/ethereum.png";
+
 
 
 type PropsType = {
@@ -24,13 +17,19 @@ const WalletAssets = ({balanceTRV,balanceWalletETH, balanceWalletUSD  } : PropsT
   const balanceWusd= balanceWalletUSD;
   const balancetoken= balanceTRV;
 
+  
   const data = useMemo(
     () => [
       {
         asset: { coin: "Venture Capilta", coinSrt: "TRV", icon: doge },
         balance: { balence: balanceWusd, coinBalance: balancetoken  },
         price: 1900,
-      }
+      },
+      {
+        asset: { coin: "Token X", coinSrt: "TOKX", icon: icon2 },
+        balance: { balence: balanceWusd, coinBalance: balancetoken  },
+        price: 500,
+      },
     ],
     [balanceWusd, balancetoken] // Incluimos las dependencias aquí
   );

@@ -47,7 +47,7 @@ const FarmMain = () => {
     <div className="w-full">
       <div className="clss">
         <h1 className="text-5xl leading-[120%] font-semibold text-[var(--color-gray-6)] dark:text-white">
-          Portafolio
+          Portfolio
         </h1>
         <p className="text-[var(--color-gray-6)] dark:text-white mt-3">
         Here you can review the assets in your wallet
