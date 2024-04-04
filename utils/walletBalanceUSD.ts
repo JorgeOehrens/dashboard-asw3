@@ -1,43 +1,21 @@
 import walletBalanceETH from "./walletBalanceETH";
 import connectingPARITYContract from "@/lib/useParityContract";
 import { ethers } from "ethers";
+import MarketData from "@/components/nftDetails/bidHistory";
+import tokenBalanceUSD from "@/utils/tokenBalanceUSD";
 
-const cache = {
-    usdValue: 0,
-    timestamp: 0
-};
 
-const isCacheValid = () => {
-    const now = Date.now();
-    const twoMinutes = 120 * 1000; 
-    return (now - cache.timestamp) < twoMinutes;
-};
 
 const walletBalanceUSD = async () => {
-    if (isCacheValid() && cache.usdValue !== null) {
-        console.log('Returning cached value:', cache.usdValue);
-        return cache.usdValue.toString(); 
+    let totalBalanceUSD = 0;
+
+    for (const item of MarketData) {
+        const balanceUSD = await tokenBalanceUSD(item.adress_token, item.adress_sales);
+        totalBalanceUSD += parseFloat(balanceUSD);
     }
 
-    const walletETHString = await walletBalanceETH();
-    const walletETH = parseFloat(walletETHString);
-    const PARITY_CONTRACT = await connectingPARITYContract();
-
-    if (!PARITY_CONTRACT) {
-        throw new Error("Error al conectar con el contrato de Parity");
-    }
-
-    const usd_eth = await PARITY_CONTRACT.getLatestPrice(); 
-    const usdPerEth = ethers.utils.formatUnits(usd_eth, 8); 
-
-    const amountUSD = parseFloat(usdPerEth) * walletETH;
-    const amountUSDNoDecimals = Math.floor(amountUSD);
-
-    cache.usdValue = amountUSDNoDecimals;
-    cache.timestamp = Date.now();
-    console.log('USD per ETH:', amountUSDNoDecimals);
-
-    return amountUSDNoDecimals.toString();
+    console.log('Total wallet balance in USD:', totalBalanceUSD);
+    return totalBalanceUSD.toString();
 };
 
 

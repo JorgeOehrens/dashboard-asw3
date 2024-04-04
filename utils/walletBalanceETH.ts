@@ -1,12 +1,12 @@
-import connectingTOKENSALEContract from "@/lib/useSaleContract";
-import useTokenBalance from "@/lib/readBalanceTokens";
-import { ethers } from "ethers";
 import ChechIfWalletConnected from "@/lib/walletConnected";
 import connectingTOKENContract from "@/lib/useTokenContract";
+import connectingTOKENSALEContract from "@/lib/useSaleContract";
+import { ethers } from "ethers";
+import MarketData from "@/components/nftDetails/bidHistory"; // Asegúrate de que esto contenga los datos necesarios
 
 // Objeto para almacenar los valores en caché
 const walletBalanceCache = {
-    balance: "0",
+    balanceETH: "0",
     timestamp: 0
 };
 
@@ -18,43 +18,41 @@ const isWalletBalanceCacheValid = () => {
 };
 
 const walletBalanceETH = async () => {
-    if (isWalletBalanceCacheValid() && walletBalanceCache.balance !== null) {
-        console.log('Returning cached balance:', walletBalanceCache.balance);
-        return walletBalanceCache.balance.toString();
+    if (isWalletBalanceCacheValid() && walletBalanceCache.balanceETH !== null) {
+        console.log('Returning cached balance:', walletBalanceCache.balanceETH);
+        return walletBalanceCache.balanceETH.toString();
     }
 
     const account = await ChechIfWalletConnected();
-    const TOKEN_SALE_CONTRACT = await connectingTOKENSALEContract();
-    const TOKEN_CONTRACT = await connectingTOKENContract();
+    let totalBalanceETH = 0;
 
-    if (!TOKEN_CONTRACT) {
-        throw new Error("Error al conectar con el contrato de tokens");
+    for (const item of MarketData) {
+        const TOKEN_CONTRACT = await connectingTOKENContract(item.adress_token);
+        const TOKEN_SALE_CONTRACT = await connectingTOKENSALEContract(item.adress_sales);
+
+        if (!TOKEN_CONTRACT || !TOKEN_SALE_CONTRACT) {
+            continue; // O manejar el error según sea necesario
+        }
+
+        let tokenBalance = ethers.BigNumber.from(0);
+
+        if (account) {
+            tokenBalance = await TOKEN_CONTRACT.balanceOf(account);
+        }
+
+        const priceInWei = await TOKEN_SALE_CONTRACT.getTokenSalePriceInWei();
+        const priceInEth = ethers.utils.formatEther(priceInWei);
+        const tokenInEth = ethers.utils.formatEther(tokenBalance);
+
+        totalBalanceETH += parseFloat(priceInEth) * parseFloat(tokenInEth);
     }
-
-    if (!TOKEN_SALE_CONTRACT) {
-        throw new Error("Error al conectar con el contrato de venta de tokens");
-    }
-
-    let tokenBalance = ethers.BigNumber.from(0);
-
-    if (account) {
-        tokenBalance = await TOKEN_CONTRACT.balanceOf(account);
-    }
-
-    const priceInWei = await TOKEN_SALE_CONTRACT.getTokenSalePriceInWei();
-
-    // Convertimos los valores BigNumber a strings para realizar operaciones aritméticas
-    const priceInEth = ethers.utils.formatEther(priceInWei);
-    const tokenInEth = ethers.utils.formatEther(tokenBalance);
-
-    // Convertimos las cadenas a números para realizar la multiplicación
-    const balanceWallet = parseFloat(priceInEth) * parseFloat(tokenInEth);
 
     // Actualizar caché con el nuevo valor y la nueva marca de tiempo
-    walletBalanceCache.balance = balanceWallet.toString();
+    walletBalanceCache.balanceETH = totalBalanceETH.toString();
     walletBalanceCache.timestamp = Date.now();
 
-    return walletBalanceCache.balance;
+    console.log('Total wallet balance in ETH:', totalBalanceETH);
+    return walletBalanceCache.balanceETH;
 };
 
 export default walletBalanceETH;

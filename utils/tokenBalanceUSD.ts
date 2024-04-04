@@ -41,10 +41,6 @@ const tokenBalanceUSD = async (address: string,address_sales: string) => {
     const amountUSD = parseFloat(usdPerEth) * balanceWallet;
     const amountUSDNoDecimals = Math.floor(amountUSD);
 
-
-
-
-
     return amountUSDNoDecimals.toString();
 };
 
