@@ -5,6 +5,11 @@ import MarketData from "../nftDetails/bidHistory";
 import tokenBalance from "@/utils/tokenBalance";
 import tokenBalanceUSD from "@/utils/tokenBalanceUSD"; // Asegúrate de tener esta función implementada
 
+type PropsType = {
+  balanceTRV: string;
+  balanceWalletETH: string;
+  balanceWalletUSD: string;
+};
 
 const WalletAssets = () => {
   const [balances, setBalances] = useState<{ [key: string]: string }>({});
@@ -15,20 +20,18 @@ const WalletAssets = () => {
       const balancesTemp: { [key: string]: string } = {};
       const balancesUSDTemp: { [key: string]: string } = {};
       for (const item of MarketData) {
-        const balance = await tokenBalance(item.adress_token); 
-        const balanceNumber = parseFloat(balance); 
-        const priceNumber = item.price; 
-        const balanceUSD = (balanceNumber * priceNumber).toFixed(2); 
+        const balance = await tokenBalance(item.adress_token);
+        const balanceUSD = await tokenBalanceUSD(item.adress_token,item.adress_sales);
         balancesTemp[item.symbol] = balance;
-        balancesUSDTemp[item.symbol] = balanceUSD.toString(); 
+        balancesUSDTemp[item.symbol] = balanceUSD;
       }
       setBalances(balancesTemp);
       setBalancesUSD(balancesUSDTemp);
     };
-  
+
     loadBalances();
   }, []);
-  
+
   const data = useMemo(() => MarketData.map(item => ({
     asset: {
       coin: item.name,

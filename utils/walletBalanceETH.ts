@@ -18,7 +18,6 @@ const isWalletBalanceCacheValid = () => {
 };
 
 const walletBalanceETH = async () => {
-    // Verificar si el caché es válido y retornar el valor si es así
     if (isWalletBalanceCacheValid() && walletBalanceCache.balance !== null) {
         console.log('Returning cached balance:', walletBalanceCache.balance);
         return walletBalanceCache.balance.toString();
