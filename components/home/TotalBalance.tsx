@@ -1,4 +1,3 @@
-import MultipleRadialbars from "../charts/MultipleRadialbars";
 
 const TotalBalance = () => {
   return (

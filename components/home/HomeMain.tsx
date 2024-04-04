@@ -13,6 +13,7 @@ import { useAccount } from 'wagmi';
 import tokenBalance from "@/utils/tokenBalance";
 import getAllTransactions from "@/utils/transactionsToken";
 import withdrawBalanceUSD from "@/utils/withdrawBalanceUSD";
+import MarketData from "../nftDetails/bidHistory";
 
 import withdrawBalanceETH from "@/utils/withdrawBalanceETH";
 
@@ -55,7 +56,7 @@ const HomeMain = () => {
 
         
 
-        const tokenBalance1 = await tokenBalance();
+        const tokenBalance1 = await tokenBalance(MarketData[0].adress_token);
         settokenBalance(tokenBalance1);
         
         const usdBalance = await walletBalanceusd();
@@ -73,13 +74,12 @@ const HomeMain = () => {
     };
 
     fetchBalances();
-  }, [isClient]); // Este efecto depende de isClient para asegurarse de ejecutar en el lado del cliente
+  }, [isClient]); 
 
   return (
     <>
       <div className="w-full xl:w-8/12">
       <div className="grid grid-cols-2 gap-4 mb-6">
-          {/* Wallet Balance Section */}
           <Suspense>
           <WalletBalance 
           balanceWalletETH={balanceWalletETH}
@@ -88,7 +88,6 @@ const HomeMain = () => {
            />
            </Suspense>
 
-          {/* Earn Balance Section */}
           <EarnBalance          balanceWalletETH={withdrawWalletETH}
                  balanceWalletUSD={withdrawBalanceUSD1}
        
@@ -112,32 +111,22 @@ const HomeMain = () => {
               2.03%
             </p>
           </div>
-          {/* Area Chart Section */}
 
-          {/* <AreaChart transactions={transactions}/> */}
         </div>
 
 
 
-        {/* Wallet Assets Section */}
         <WalletAssets 
-        balanceTRV = {tokenBalance2}
-        balanceWalletETH={balanceWalletETH}
-        balanceWalletUSD={walletBalanceUSD}
+
         />
           <div className="w-full xl:w-8/12">
-    {/* Otros componentes y secciones */}
 
-    {/* Sección de Transacciones */}
 
   </div>
       </div>
 
       <div className="w-full xl:w-4/12">
-        {/* Total Balance Section */}
-        {/* <TotalBalance /> */}
 
-        {/* Recent Transactions Section */}
         <RecentTransactions
         
         />

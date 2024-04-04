@@ -2,9 +2,9 @@ import { ethers } from "ethers";
 import ChechIfWalletConnected from "@/lib/walletConnected";
 import connectingTOKENContract from "@/lib/useTokenContract";
 
-const tokenBalance = async () => {
+const tokenBalance = async (address: string) => {
     const account = await ChechIfWalletConnected();
-    const TOKEN_CONTRACT = await connectingTOKENContract();
+    const TOKEN_CONTRACT = await connectingTOKENContract(address);
 
     let tokenBalance;
 

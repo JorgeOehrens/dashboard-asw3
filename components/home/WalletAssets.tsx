@@ -1,39 +1,46 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Table from "../common/Table";
-import doge from "/public/images/asset_digital.png";;
+import doge from "/public/images/asset_digital.png";
 import MarketData from "../nftDetails/bidHistory";
-import icon2 from "/public/images/icon/ethereum.png";
+import tokenBalance from "@/utils/tokenBalance";
+import tokenBalanceUSD from "@/utils/tokenBalanceUSD"; // Asegúrate de tener esta función implementada
 
 
+const WalletAssets = () => {
+  const [balances, setBalances] = useState<{ [key: string]: string }>({});
+  const [balancesUSD, setBalancesUSD] = useState<{ [key: string]: string }>({});
 
-type PropsType = {
-  balanceTRV: string;
-  balanceWalletETH: string;
-  balanceWalletUSD: string;
-
-};
-const WalletAssets = ({balanceTRV,balanceWalletETH, balanceWalletUSD  } : PropsType) => {
+  useEffect(() => {
+    const loadBalances = async () => {
+      const balancesTemp: { [key: string]: string } = {};
+      const balancesUSDTemp: { [key: string]: string } = {};
+      for (const item of MarketData) {
+        const balance = await tokenBalance(item.adress_token); 
+        const balanceNumber = parseFloat(balance); 
+        const priceNumber = item.price; 
+        const balanceUSD = (balanceNumber * priceNumber).toFixed(2); 
+        balancesTemp[item.symbol] = balance;
+        balancesUSDTemp[item.symbol] = balanceUSD.toString(); 
+      }
+      setBalances(balancesTemp);
+      setBalancesUSD(balancesUSDTemp);
+    };
   
-  const balanceWusd= balanceWalletUSD;
-  const balancetoken= balanceTRV;
-
+    loadBalances();
+  }, []);
   
-  const data = useMemo(
-    () => [
-      {
-        asset: { coin: "Venture Capilta", coinSrt: "TRV", icon: doge },
-        balance: { balence: balanceWusd, coinBalance: balancetoken  },
-        price: 1900,
-      },
-      {
-        asset: { coin: "Token X", coinSrt: "TOKX", icon: icon2 },
-        balance: { balence: balanceWusd, coinBalance: balancetoken  },
-        price: 500,
-      },
-    ],
-    [balanceWusd, balancetoken] // Incluimos las dependencias aquí
-  );
-  
+  const data = useMemo(() => MarketData.map(item => ({
+    asset: {
+      coin: item.name,
+      coinSrt: item.symbol,
+      icon: item.icon, 
+    },
+    balance: {
+      balence: balancesUSD[item.symbol] || 'Loading...', 
+      coinBalance: balances[item.symbol] || 'Loading...', 
+    },
+    price: item.price,
+  })), [balances, balancesUSD]);
 
   const columns = useMemo(
     () => [
@@ -49,7 +56,6 @@ const WalletAssets = ({balanceTRV,balanceWalletETH, balanceWalletUSD  } : PropsT
         Header: "Price",
         accessor: "price",
       }
-
     ],
     []
   );
@@ -58,7 +64,6 @@ const WalletAssets = ({balanceTRV,balanceWalletETH, balanceWalletUSD  } : PropsT
     <div className="overflow-y-auto p-6 bg-white dark:bg-[var(--color-gray-7)] rounded-lg shadow-[0px_1px_2px_rgba(0,0,0,0.2)] mt-6">
       <h5 className="text-[20px] leading-[130%] text-[var(--color-gray-5)] dark:text-white pb-8 font-semibold">
         Wallet Assets
-        
       </h5>
       <Table columns={columns} data={data} />
     </div>
