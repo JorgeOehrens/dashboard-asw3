@@ -1,6 +1,6 @@
 import user_1 from "/public/images/logo.png";
 import img1 from "/public/images/nft/logo.jpg"
-import icon1 from "/public/images/asset_digital.png";
+import icon1 from "/public/images/asset_digital_sm2.png";
 import icon2 from "/public/images/icon/ethereum.png";
 import img2 from "/public/images/nft/Diversion-Royale-2.png"
 

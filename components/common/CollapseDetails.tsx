@@ -77,9 +77,9 @@ const CollapseDetails: React.FC<Props> = ({ transaction }) => {
               For
             </span>
             <div className="flex items-center gap-2">
-              <Image src={aw3} alt="btc" className="flex-shrink-0 w-3 h-3" />
+              <Image src={transaction.icon} alt="btc" className="flex-shrink-0 w-3 h-3" />
               <span className="leading-[150%] text-[var(--color-gray-7)] dark:text-[var(--color-gray-2)]">
-              {transaction.tokens} TRV
+              {transaction.tokens} {transaction.symbol}
               </span>
             </div>
           </div>

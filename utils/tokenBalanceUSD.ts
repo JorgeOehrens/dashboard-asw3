@@ -22,7 +22,7 @@ const tokenBalanceUSD = async (address: string,address_sales: string) => {
     if (!TOKEN_SALE_CONTRACT) {
         throw new Error("Error al conectar con el contrato de venta de tokens");
     }
-
+    
     let tokenBalance = ethers.BigNumber.from(0);
 
     if (account) {

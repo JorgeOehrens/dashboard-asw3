@@ -3,7 +3,7 @@ import connectingPARITYContract from "@/lib/useParityContract";
 import { ethers } from "ethers";
 
 const withdrawBalanceUSD = async () => {
-    const walletETHString = await walletBalanceETH(); // Asegúrate de esperar a que se resuelva
+    const walletETHString = await walletBalanceETH(); // Obtiene el balance total en ETH
     const walletETH = parseFloat(walletETHString); // Convertir a número
 
     const PARITY_CONTRACT = await connectingPARITYContract();
@@ -23,10 +23,6 @@ const withdrawBalanceUSD = async () => {
 
     console.log('USD per ETH:', usdPerEth);
     console.log('Withdraw amount in USD:', withdrawAmountUSDNoDecimals);
-
-    // Aquí deberías continuar con la lógica para permitir al usuario retirar este monto.
-    // Esto puede implicar interactuar con otro contrato, realizar una transferencia,
-    // o cualquier otra acción específica según tu aplicación.
 
     return withdrawAmountUSDNoDecimals.toString();
 };

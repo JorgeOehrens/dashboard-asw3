@@ -1,40 +1,46 @@
 import connectingTOKENSALEContract from "@/lib/useSaleContract";
-import useTokenBalance from "@/lib/readBalanceTokens";
-import { ethers } from "ethers";
 import ChechIfWalletConnected from "@/lib/walletConnected";
 import connectingTOKENContract from "@/lib/useTokenContract";
+import MarketData from "@/components/nftDetails/bidHistory"; // Asume que esto contiene la información de los tokens
+import { ethers } from "ethers";
 
 const withdrawBalanceETH = async () => {
-
     const account = await ChechIfWalletConnected();
-    const TOKEN_SALE_CONTRACT = await connectingTOKENSALEContract();
-    const TOKEN_CONTRACT = await connectingTOKENContract();
 
-    if (!TOKEN_CONTRACT) {
-        throw new Error("Error al conectar con el contrato de tokens");
+    if (!account) {
+        console.log("No account connected.");
+        return "0";
     }
 
-    if (!TOKEN_SALE_CONTRACT) {
-        throw new Error("Error al conectar con el contrato de venta de tokens");
-    }
+    let totalWithdrawBalance = 0;
 
-    let tokenBalance = ethers.BigNumber.from(0);
+    for (const token of MarketData) {
+        const TOKEN_CONTRACT = await connectingTOKENContract(token.adress_token);
+        const TOKEN_SALE_CONTRACT = await connectingTOKENSALEContract(token.adress_sales);
 
-    if (account) {
+        if (!TOKEN_CONTRACT || !TOKEN_SALE_CONTRACT) {
+            console.log(`Error connecting to contract for ${token.symbol}`);
+            continue; // Or handle the error as needed
+        }
+
+        let tokenBalance = ethers.BigNumber.from(0);
+
         tokenBalance = await TOKEN_CONTRACT.balanceOf(account);
+
+        const priceInWei = await TOKEN_SALE_CONTRACT.getTokenSalePriceInWei();
+
+        const priceInEth = ethers.utils.formatEther(priceInWei);
+        const tokensInEth = ethers.utils.formatEther(tokenBalance);
+
+        const balanceWallet = parseFloat(priceInEth) * parseFloat(tokensInEth);
+
+        // Suponiendo que 0.007 es el porcentaje que quieres retirar
+        const balanceWithdraw = balanceWallet * 0.007;
+
+        totalWithdrawBalance += balanceWithdraw;
     }
 
-    const priceInWei = await TOKEN_SALE_CONTRACT.getTokenSalePriceInWei();
-
-    const priceInEth = ethers.utils.formatEther(priceInWei);
-    const tokensInEth = ethers.utils.formatEther(tokenBalance);
-
-    const balanceWallet = parseFloat(priceInEth) * parseFloat(tokensInEth);
-
-    const balanceWithdraw = balanceWallet * 0.007;
-
-
-    return balanceWithdraw.toString(); // Este es el valor que quieres obtener
+    return totalWithdrawBalance.toString(); // Este es el total que quieres obtener
 };
 
 export default withdrawBalanceETH;

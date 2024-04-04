@@ -1,24 +1,18 @@
 import Link from "next/link";
 import RecentTransactionItms from "./RecentTransactionItms";
-import getAllTransactions from "@/utils/transactionsToken";
 import { useEffect, useState } from 'react';
 import { Transaction } from "@/utils/types";
 import getAllTransactionsData from "@/utils/transactionsToken2";
 
+// Hook personalizado para determinar si estamos en el lado del cliente
 const useIsClient = () => {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    setIsClient(true);
+    setIsClient(true); // Se establece a true cuando el componente se monta
   }, []);
 
   return isClient;
-};
-
-const convertWeiToEther = (wei: string) => {
-  // Convertir el valor de wei a ether dividiendo por 10^18
-  const ether = parseInt(wei, 16) / Math.pow(10, 18);
-  return ether;
 };
 
 const RecentTransactions = () => {
@@ -28,22 +22,18 @@ const RecentTransactions = () => {
 
   useEffect(() => {
     const fetchTransactions = async () => {
-      if (isClient) {
+      if (isClient) { // Solo ejecutar en el lado del cliente
         try {
-
-          
           const transactionsData2 = await getAllTransactionsData();
-          setTransactions2(transactionsData2);
-  
+          setTransactions2(transactionsData2); // Actualizar el estado con las transacciones obtenidas
         } catch (error) {
           console.error('Error fetching transactions:', error);
         }
       }
     };
 
-    fetchTransactions();
+    fetchTransactions(); // Llamar a la función al montar el componente y cuando `isClient` cambie
   }, [isClient]);
-  console.log("TRANSACTIONS: ",transactions2);
 
   return (
     <div className="flex flex-col gap-6 bg-white dark:bg-[var(--color-gray-7)] rounded-lg p-3">
@@ -51,12 +41,9 @@ const RecentTransactions = () => {
         <h5 className="text-lg leading-[150%] font-bold">
           Recent Transactions
         </h5>
-      
       </div>
 
-  
-
-      {/* Aquí podrías pasar las transacciones a RecentTransactionItms si necesitas mostrarlas de otra manera */}
+      {/* Pasar las transacciones al componente RecentTransactionItms para mostrarlas */}
       <RecentTransactionItms transactions={transactions2} />
     </div>
   );

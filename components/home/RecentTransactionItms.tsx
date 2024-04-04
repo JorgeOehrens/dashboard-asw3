@@ -56,13 +56,13 @@ const TransactionItems = ({ transactions }: { transactions: Transaction[] }) => 
                   <div className="flex items-center">
                     <Image src={btc} alt="icon 1" className="flex-shrink-0" />
                     <Image
-                      src={aw3}
+                      src={transaction.icon}
                       alt="icon 1"
                       className="-ml-3 flex-shrink-0"
                     />
                   </div>
                   <h6 className="text-base leading-[150%] font-semibold dark:text-white">
-                  {transaction.tokens} TRV
+                  {transaction.tokens} {transaction.symbol}
                   </h6>
                 </div>
                 <p className="text-xs leading-[150%] text-[var(--color-gray-4)]">
