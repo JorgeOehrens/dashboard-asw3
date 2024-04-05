@@ -1,22 +1,21 @@
 import Image from "next/image";
 import verify from "/public/images/icon/verify.png";
 import nft_details from "/public/images/nft/logo.jpg";
-import { Progress } from "flowbite-react";
-
 import user_2 from "/public/images/user/logo2.jpg";
 import BuyToken from "@/utils/buyToken";
 import tokenPriceEth from "@/utils/tokenPrice";
 import ethPriceUsd from "@/utils/ethPriceUsd";
 import walletBalanceETH from "@/utils/walletBalanceETH";
 import walletBalanceusd from "@/utils/walletBalanceUSD";
-import WalletBalance from "@/components/home/WalletBalance";
-import EarnBalance from "@/components/home/EarnBalance";
 import { useState, useEffect } from "react";
-import btc from "/public/images/asset_digital.png";
-import Select from "../common/Select";
 import supplyMax from "@/utils/maxSuply";
 import MarketData from "../nftDetails/bidHistory";
+import { useRouter } from 'next/router';
 
+type PropsType = {
+  tokenAddress: string;
+
+};
 const useIsClient = () => {
   const [isClient, setIsClient] = useState(false);
 
@@ -28,11 +27,18 @@ const useIsClient = () => {
   return isClient;
 };
 
-const coins = [
-  { id: 1, name: "TRV", icon: btc },];
-const NftDetailsCard = () => {
+const NftDetailsCard = ({tokenAddress}:PropsType) => {
   const [swap, setSwap] = useState(false);
   const isClient = useIsClient();
+  console.log('TOKEN ADDRESS',tokenAddress);
+  const indice_token = MarketData.findIndex(token => token.adress_token === tokenAddress);
+  const img = MarketData[indice_token].img;
+  const icon = MarketData[indice_token].icon;
+  const name = MarketData[indice_token].name;
+  const symbol = MarketData[indice_token].symbol;
+  const addres_token = MarketData[indice_token].adress_token;
+  const addres_sales = MarketData[indice_token].adress_sales;
+  const max_supply_token = MarketData[indice_token].maxSupply;
 
   const handleSwap = () => {
     setSwap(!swap);
@@ -50,7 +56,6 @@ const NftDetailsCard = () => {
   const [ethToPay, setEthToPay] = useState('0');
   const [usdConversion, setUsdConversion] = useState('0'); 
   const [earnBalance, setEarnBalance] = useState('0'); 
-
   useEffect(() => {
     const fetchBalances = async () => {
       if (isClient) { 
@@ -60,10 +65,10 @@ const NftDetailsCard = () => {
         const ethPrice1 = await ethPriceUsd();
         setethPrice(ethPrice1);
 
-        const tokenBalance1 = await tokenPriceEth(MarketData[0].adress_sales);
+        const tokenBalance1 = await tokenPriceEth(MarketData[indice_token].adress_sales);
         settokenPrice(tokenBalance1);
-        const usdBalance = await walletBalanceusd(); // Asumiendo que esta función devuelve el balance en USD
-        setWalletBalanceUSD(usdBalance); // Actualiza el estado con el balance en USD
+        const usdBalance = await walletBalanceusd(); 
+        setWalletBalanceUSD(usdBalance); 
         const ethBalance = await walletBalanceETH();
         setBalanceWalletETH(ethBalance);
 
@@ -142,10 +147,10 @@ useEffect(() => {
         Max Supply
         </h3>
         <p className="text-l sm:text-[18px] font-semibold leading-[120%] text-[var(--color-gray-4)] dark:text-white">
-               {maxSupply} Tokens / 4900 tokens
+               {maxSupply} Tokens / {max_supply_token} tokens
 
               </p>
-        <Image src={nft_details} alt="nft_details" className="w-full" />
+        <Image src={img} alt="nft_details" className="w-full" />
         <p className="flex items-center justify-between text-xl leading-[150%]">
             <span className="text-[var(--color-gray-4)] dark:text-[var(--color-gray-3)]">
               Price Token USD
@@ -170,17 +175,17 @@ useEffect(() => {
      
         <div className="max-w-[504px] m-auto border dark:border-[#3C4145] py-5 px-4 sm:px-8 bg-white dark:bg-[var(--color-gray-7)] rounded-lg shadow-[0px_1px_1px_rgba(0,0,0,0.25)]">
         <h3 className="text-2xl sm:text-[32px] font-semibold leading-[120%] text-[var(--color-gray-7)] dark:text-white">
-        Tanglewood Racquet Village Token 
+        {name}
         </h3>
 
         <div className="flex flex-col min-[376px]:flex-row items-start min-[422px]:items-center gap-3 min-[422px]:gap-8 mt-3 sm:mt-6">
           <div className="flex items-center gap-1 sm:gap-2">
             <div className="w-12 sm:w-[60px] h-12 sm:h-[60px] rounded-full overflow-hidden">
-              <Image src={user_2} alt="user_2" className="w-full" />
+              <Image src={icon} alt="user_2" className="w-full" />
             </div>
             <div className="clss">
               <p className="text-[var(--color-gray-7)] dark:text-white">
-              TRV
+              {symbol}
               </p>
               
             </div>
@@ -191,7 +196,7 @@ useEffect(() => {
             <div className="clss">
              
               <p className="flex items-center gap-1 sm:gap-3 text-xs sm:text-base text-[var(--color-gray-4)] dark:text-[var(--color-gray-3)] mt-1">
-                Tanglewood Racquet Village Token
+                {name}
                 <Image src={verify} alt="verify" />
               </p>
             </div>
