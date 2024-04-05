@@ -50,21 +50,21 @@ const MarketData = [
     adress_token: "0x4f3cff356728444c3301b9a5734b3a5751cd0ae8",
     adress_parity: "0x72fefe92a00cb5ea36a44483acc5f08e740b080e",
     adress_sales: "0xea2ae118a29b367e1c70a7290c8a7c8f46ad2b4d",
-    description:"This property represents 17.52 AC of vacant land as of the effective date of valuation. It is approved for the development of high-density multi-family uses comprised of 480 units demonstrating an overall density of 27.4 units per acre. Ultimately, this project is proposed for the development of one and two bedroom apartment units, along with 432 storage units. The apartment units range in size from 658 to 1,252 square feet with an average size at 827 square feet. Storage units includes a mix of 106-4’ x 8’ and 326 - 6’ x 8’ units. ",
+    description:"TOKENX ",
     documData:[
       {
         id: "doc1",
-        title: "Appraisal",
+        title: "Documento 1",
         url: "https://www.assetsweb3.com/assets/doc1-a6439719.pdf",
       },
       {
         id: "doc2",
-        title: "Rules of Procedure",
+        title: "Documento 2",
         url: "https://www.assetsweb3.com/assets/doc2-f9347f43.pdf",
       },
       {
         id: "doc3",
-        title: "Closing Instructions",
+        title: "Documento 3",
         url: "https://www.assetsweb3.com/assets/doc3-35f79f0c.pdf",
       },]
   },

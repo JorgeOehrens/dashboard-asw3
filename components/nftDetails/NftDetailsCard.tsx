@@ -124,7 +124,7 @@ useEffect(() => {
 }, [ethToPay]);
   const handleBuyToken = async () => {
     if(isClient) { // Si el cliente está conectado, intenta comprar tokens
-      await BuyToken(nToken,MarketData[0].adress_sales); // Llama a tu función BuyToken con el número de tokens
+      await BuyToken(nToken,MarketData[indice_token].adress_sales); // Llama a tu función BuyToken con el número de tokens
     } else {
       console.log("---");
     }

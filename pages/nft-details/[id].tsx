@@ -18,7 +18,7 @@ export default function NftDetails() {
 
       <div className="flex flex-col lg:flex-row gap-6 mt-[46px]">
         <div className="w-full lg:w-1/2">
-          <Descriptions />
+         {tokenAddress && <Descriptions tokenAddress={tokenAddress} />}
         </div>
         <div className="w-full lg:w-1/2">
           <RecentTransactions />
