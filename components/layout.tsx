@@ -25,14 +25,14 @@ const Layout = ({ children }: LayoutProps) => {
   useEffect(() => {
     // Redirige si no está conectado y la página no es /login, /explore-nfts, ni /nft-details
     if (!isConnected && !['/login', '/explore-nfts', '/nft-details'].includes(router.pathname)) {
-      router.push("/login");
+      router.push("/");
     }
   }, [isConnected, router]);
 
   useEffect(() => {
     // Si está conectado, redirige al index
     if (isConnected && router.pathname === "/login") {
-      router.push("/");
+      router.push("/dashboard");
     }
   }, [isConnected, router]);
 

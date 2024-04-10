@@ -45,7 +45,7 @@ const NavBar = ({
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-4">
           <div className="flex lg:hidden items-center gap-4">
-            <Link href="'/">
+            <Link href="/">
               <Image src={logo_icon} alt="logo" />
             </Link>
             <button type={"button"} onClick={() => setOpenSidBar(!openSidBar)}>
