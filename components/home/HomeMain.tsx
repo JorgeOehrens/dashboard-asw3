@@ -108,7 +108,7 @@ const HomeMain = () => {
               <span className="material-symbols-outlined !text-base !text-[var(--color-primary-2)] dark:!text-[var(--color-primary-dark)]">
                 chart_data
               </span>
-              2.03%
+              {/* 2.03% */}
             </p>
           </div>
 

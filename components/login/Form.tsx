@@ -14,7 +14,7 @@ const Form = () =>{
         <p className="font-medium text-lg text-gray-500 mt-4">
             Welcome back! Please connect in Assets Web 
         </p>
-
+{/* 
 
         <div className="mt-8">
             <div >
@@ -39,7 +39,7 @@ const Form = () =>{
 
 
 
-        </button>
+        </button> */}
 
     </div>
 
