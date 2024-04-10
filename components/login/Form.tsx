@@ -1,6 +1,7 @@
 
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 
+
 // import { signIn } from 'next-auth/react';
 
 const Form = () =>{
@@ -14,6 +15,10 @@ const Form = () =>{
         <p className="font-medium text-lg text-gray-500 mt-4">
             Welcome back! Please connect in Assets Web 
         </p>
+        <video autoPlay loop muted style={{ width: '500px', height: '500px' }}>
+            <source src="/video.mp4" type="video/mp4" />
+        </video>
+
 {/* 
 
         <div className="mt-8">
