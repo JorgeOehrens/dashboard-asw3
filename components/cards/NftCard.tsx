@@ -34,7 +34,7 @@ const NftCard = ({ data }: PropeType) => {
   return (
     <div className="bg-white dark:bg-[var(--color-gray-6)] rounded-lg p-3">
       <div className="rounded-lg relative">
-        <Link href={`/nft-details/${adress_token}`} passHref>
+        <Link href={`/dashboard/token/${adress_token}`} passHref>
           <Image
             src={img}
             alt="nft_1"
@@ -62,7 +62,7 @@ const NftCard = ({ data }: PropeType) => {
           {symbol}
           <Image src={verify} alt="verify" />
         </p>
-        <Link href={`/nft-details/${adress_token}`} passHref>
+        <Link href={`/dashboard/token/${adress_token}`} passHref>
           <h6 className="font-bold text-[var(--color-gray-6)] dark:text-white mt-3">
             {name}
           </h6>
@@ -71,7 +71,7 @@ const NftCard = ({ data }: PropeType) => {
       <div className="flex items-center justify-between mt-7">
  
         <Link
-          href={`/nft-details/${adress_token}`} passHref
+          href={`/dashboard/token/${adress_token}`} passHref
           className="px-3 py-2 text-center bg-[var(--color-primary)] text-[#F8FAFC] rounded-lg"
         >
           View Details

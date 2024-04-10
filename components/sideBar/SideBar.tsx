@@ -139,10 +139,10 @@ const SideBar = ({ showText, setShowText, openSidBar, setOpenSidBar }: any) => {
                     onMouseLeave={onMouseLeaveHandler}
                   >
                     <Link
-                      href="/"
+                      href="/dashboard"
                       className={`flex items-center gap-2 p-3 ${
                         showText ? "" : "justify-center"
-                      } ${route === "/" ? "side-bar-active" : ""}`}
+                      } ${route === "/dashboard" ? "side-bar-active" : ""}`}
                       onClick={() => setOpenSidBar(false)}
                     >
                       <span className="material-symbols-outlined">cottage</span>
@@ -159,10 +159,10 @@ const SideBar = ({ showText, setShowText, openSidBar, setOpenSidBar }: any) => {
                     onMouseLeave={onMouseLeaveHandler}
                   >
                     <Link
-                      href="/swap"
+                      href="/dashboard/buy"
                       className={`flex items-center gap-2 p-3 ${
                         showText ? "" : "justify-center"
-                      } ${route === "/swap" ? "side-bar-active" : ""}`}
+                      } ${route === "/dashboard/buy" ? "side-bar-active" : ""}`}
                       onClick={() => setOpenSidBar(false)}
                     >
                       <span className="material-symbols-outlined">
@@ -181,10 +181,10 @@ const SideBar = ({ showText, setShowText, openSidBar, setOpenSidBar }: any) => {
                     onMouseLeave={onMouseLeaveHandler}
                   >
                     <Link
-                      href="/liquidity"
+                      href="/dashboard/withdraw"
                       className={`flex items-center gap-2 p-3 ${
                         showText ? "" : "justify-center"
-                      } ${route === "/liquidity" ? "side-bar-active" : ""}`}
+                      } ${route === "/dashboard/withdraw" ? "side-bar-active" : ""}`}
                       onClick={() => setOpenSidBar(false)}
                     >
                       <span className="material-symbols-outlined">
@@ -203,10 +203,10 @@ const SideBar = ({ showText, setShowText, openSidBar, setOpenSidBar }: any) => {
                     onMouseLeave={onMouseLeaveHandler}
                   >
                     <Link
-                      href="/farm"
+                      href="/dashboard/portfolio"
                       className={`flex items-center gap-2 p-3 ${
                         showText ? "" : "justify-center"
-                      } ${route === "/farm" ? "side-bar-active" : ""}`}
+                      } ${route === "/dashboard/portfolio" ? "side-bar-active" : ""}`}
                       onClick={() => setOpenSidBar(false)}
                     >
                       <span className="material-symbols-outlined">dns</span>
@@ -225,10 +225,10 @@ const SideBar = ({ showText, setShowText, openSidBar, setOpenSidBar }: any) => {
                     onMouseLeave={onMouseLeaveHandler}
                   >
                     <Link
-                      href="/explore-nfts"
+                      href="/dashboard/marketplace"
                       className={`flex items-center gap-2 p-3 ${
                         showText ? "" : "justify-center"
-                      } ${route === "/explore-nfts" ? "side-bar-active" : ""}`}
+                      } ${route === "/dashboard/marketplace" ? "side-bar-active" : ""}`}
                       onClick={() => setOpenSidBar(false)}
                     >
                       <span className="material-symbols-outlined">explore</span>
