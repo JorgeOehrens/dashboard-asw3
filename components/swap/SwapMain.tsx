@@ -165,12 +165,12 @@ useEffect(() => {
       <div className="max-w-[504px] m-auto border dark:border-[#3C4145] py-5 px-4 sm:px-8 bg-white dark:bg-[var(--color-gray-7)] rounded-lg shadow-[0px_1px_1px_rgba(0,0,0,0.25)]">
         <div className="flex justify-between items-center gap-2 sm:gap-5 py-1 px-2 border border-[rgba(111,118, 126, 0.19)] dark:border-[#3C4145] rounded-lg">
           <Link
-            href="/swap"
+            href="/dashboard/buy"
             className="text-center flex-1 text-[#F8FAFC] bg-[var(--color-primary-4)] rounded-lg p-2"
           >
             Buy
           </Link>
-          <Link href="/liquidity" className="text-center flex-1">
+          <Link href="/dashboard/withdraw" className="text-center flex-1">
             Withdraw
           </Link>
           

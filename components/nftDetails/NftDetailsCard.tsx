@@ -72,7 +72,7 @@ const NftDetailsCard = ({tokenAddress}:PropsType) => {
         const ethBalance = await walletBalanceETH();
         setBalanceWalletETH(ethBalance);
 
-        const suply = await supplyMax();
+        const suply = await supplyMax(MarketData[indice_token].adress_token);
         setMaxSupply(suply);
 
         
