@@ -43,7 +43,7 @@ const CollapseDetails: React.FC<Props> = ({ transaction }) => {
 
         <div className="flex items-center justify-between text-sm text-[var(--color-gray-4)]">
           <span className="leading-[150%]">Transaction Type</span>
-          <span className="leading-[150%]">Buy tokens</span>
+          <span className="leading-[150%]">{transaction.type}</span>
         </div>
       </div>
       <div className="flex flex-col gap-5 mt-5">

@@ -11,13 +11,13 @@ const MarketData = [
     icon: icon1,
     name: "Venture Capiltal",
     symbol: "VC1",
-    price: 50,
+    price: 100,
     price_etc: 0.014,
 
     maxSupply: 5,
-    adress_token: "0x2dD2Ea614f9817F25f0A6B3865308F1ff85E884E",
+    adress_token: "0x72115f0732fd92186C95073bfc002480a1d61C83",
     adress_parity: "0xe670B1255d67BC53e68b78A9dC39811Ae3ee1DE6",
-    adress_sales: "0x49031C4FA9A24EaD0E335556B5b1070EB5B3C7F3",
+    adress_sales: "0xc43EcD1A9AeDb54830066DE1e84D0020CC5c0a21",
 
     description:"This property represents 17.52 AC of vacant land as of the effective date of valuation. It is approved for the development of high-density multi-family uses comprised of 480 units demonstrating an overall density of 27.4 units per acre. Ultimately, this project is proposed for the development of one and two bedroom apartment units, along with 432 storage units. The apartment units range in size from 658 to 1,252 square feet with an average size at 827 square feet. Storage units includes a mix of 106-4’ x 8’ and 326 - 6’ x 8’ units. ",
     documData:[
@@ -43,13 +43,13 @@ const MarketData = [
     icon: icon2,
     name: "TEST TOKEN",
     symbol: "TESTT1",
-    price: 2,
-    price_etc: 0.0005,
+    price: 30,
+    price_etc: 0.0084,
 
-    maxSupply: 90,
-    adress_token: "0xC1028Bd8A96242e719fA7601784584EcbFde0E13",
+    maxSupply: 4,
+    adress_token: "0x93C544871404326eC74C802496686190d2B30411",
     adress_parity: "0xe670B1255d67BC53e68b78A9dC39811Ae3ee1DE6",
-    adress_sales: "0x29B27c2F7D76a880899a416f7047D0E285d06592",
+    adress_sales: "0x21223296182e2347F4edDce6Cd9c28135c5B311D",
 
     description:"Description token test",
     documData:[
