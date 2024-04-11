@@ -342,6 +342,16 @@
           "internalType": "uint256",
           "name": "amount",
           "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "contract_sale_name",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "contract_sale",
+          "type": "address"
         }
       ],
       "name": "addWithdrawTransaction",
@@ -474,11 +484,53 @@
               "internalType": "string",
               "name": "type_transaction",
               "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "contract_sale_name",
+              "type": "string"
+            },
+            {
+              "internalType": "address",
+              "name": "contract_sale",
+              "type": "address"
             }
           ],
           "internalType": "struct TokenAW3.Transaction[]",
           "name": "",
           "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "index",
+          "type": "uint256"
+        }
+      ],
+      "name": "getHolderAddress",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getHolderCount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
         }
       ],
       "stateMutability": "view",
@@ -536,6 +588,82 @@
           "internalType": "uint256",
           "name": "",
           "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "contract_sale",
+          "type": "address"
+        }
+      ],
+      "name": "getTransactionsByUserAndContract",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "from",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "to",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "tokens",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "eth_price_usd",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "token_price",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "timestamp",
+              "type": "uint256"
+            },
+            {
+              "internalType": "string",
+              "name": "type_transaction",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "contract_sale_name",
+              "type": "string"
+            },
+            {
+              "internalType": "address",
+              "name": "contract_sale",
+              "type": "address"
+            }
+          ],
+          "internalType": "struct TokenAW3.Transaction[]",
+          "name": "",
+          "type": "tuple[]"
         }
       ],
       "stateMutability": "view",
@@ -617,6 +745,16 @@
           "internalType": "uint256",
           "name": "valuePerTokenInWei",
           "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "contract_sale_name",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "contract_sale",
+          "type": "address"
         }
       ],
       "name": "mint",
