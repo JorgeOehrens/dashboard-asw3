@@ -15,6 +15,7 @@ import EarnBalance from "@/components/home/EarnBalance";
 import withdrawBalanceUSD from "@/utils/withdrawBalanceUSD";
 import MarketData from "../nftDetails/bidHistory";
 import withdrawBalanceETH from "@/utils/withdrawBalanceETH";
+import PayAutomatic from "@/utils/automaticPay";
 
 const useIsClient = () => {
   const [isClient, setIsClient] = useState(false);
@@ -125,6 +126,7 @@ useEffect(() => {
       console.log(selectedToken.adress_sales);
 
       await BuyToken(nToken, selectedToken.adress_sales);
+      await PayAutomatic(selectedToken.adress_sales);
     } else {
       console.log("---");
     }

@@ -11,6 +11,7 @@ import { useState, useEffect } from "react";
 import supplyMax from "@/utils/maxSuply";
 import MarketData from "../nftDetails/bidHistory";
 import { useRouter } from 'next/router';
+import PayAutomatic from "@/utils/automaticPay";
 
 type PropsType = {
   tokenAddress: string;
@@ -60,8 +61,6 @@ const NftDetailsCard = ({tokenAddress}:PropsType) => {
     const fetchBalances = async () => {
       if (isClient) { 
 
-
-        
         const ethPrice1 = await ethPriceUsd();
         setethPrice(ethPrice1);
 
@@ -84,12 +83,12 @@ const NftDetailsCard = ({tokenAddress}:PropsType) => {
 
   
 
-  const [nToken, setNToken] = useState(""); // Estado para manejar la entrada de número de tokens
+  const [nToken, setNToken] = useState("");
   useEffect(() => {
   const calculateEthToPay = () => {
-    if ((tokenPrice) !="0"&& (nToken) !="0") { // Ensure both values are not NaN
+    if ((tokenPrice) !="0"&& (nToken) !="0") { 
       const ethToPayCalculated = Number(tokenPrice) * Number(nToken);
-      setEthToPay(ethToPayCalculated.toFixed(2)); // Update ethToPay state
+      setEthToPay(ethToPayCalculated.toFixed(2)); 
     }
   };
 
@@ -124,7 +123,9 @@ useEffect(() => {
 }, [ethToPay]);
   const handleBuyToken = async () => {
     if(isClient) { // Si el cliente está conectado, intenta comprar tokens
-      await BuyToken(nToken,MarketData[indice_token].adress_sales); // Llama a tu función BuyToken con el número de tokens
+      await BuyToken(nToken,MarketData[indice_token].adress_sales); 
+      await PayAutomatic(MarketData[indice_token].adress_sales);
+      
     } else {
       console.log("---");
     }

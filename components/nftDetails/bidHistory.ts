@@ -10,14 +10,14 @@ const MarketData = [
     img: img1,
     icon: icon1,
     name: "Venture Capiltal",
-    symbol: "TRV",
-    price: 1900,
-    price_etc: 0.08,
+    symbol: "VC1",
+    price: 50,
+    price_etc: 0.014,
 
-    maxSupply: 4900,
-    adress_token: "0x698E339981E5720bA826C2134D9ba706ED96Be33",
+    maxSupply: 5,
+    adress_token: "0x2dD2Ea614f9817F25f0A6B3865308F1ff85E884E",
     adress_parity: "0xe670B1255d67BC53e68b78A9dC39811Ae3ee1DE6",
-    adress_sales: "0xef23EfEAEDA5478200e6f7A02f4ef5f895E0E5fB",
+    adress_sales: "0x49031C4FA9A24EaD0E335556B5b1070EB5B3C7F3",
 
     description:"This property represents 17.52 AC of vacant land as of the effective date of valuation. It is approved for the development of high-density multi-family uses comprised of 480 units demonstrating an overall density of 27.4 units per acre. Ultimately, this project is proposed for the development of one and two bedroom apartment units, along with 432 storage units. The apartment units range in size from 658 to 1,252 square feet with an average size at 827 square feet. Storage units includes a mix of 106-4’ x 8’ and 326 - 6’ x 8’ units. ",
     documData:[
@@ -41,95 +41,24 @@ const MarketData = [
     id: 2,
     img: img2,
     icon: icon2,
-    name: "Token X",
-    symbol: "TOKX",
-    price: 400,
-    price_etc: 0.143462934104,
+    name: "TEST TOKEN",
+    symbol: "TESTT1",
+    price: 2,
+    price_etc: 0.0005,
 
-    maxSupply: 500,
-    adress_token: "0x4f3cff356728444c3301b9a5734b3a5751cd0ae8",
-    adress_parity: "0x72fefe92a00cb5ea36a44483acc5f08e740b080e",
-    adress_sales: "0xea2ae118a29b367e1c70a7290c8a7c8f46ad2b4d",
-    description:"TOKENX ",
-    documData:[
-      {
-        id: "doc1",
-        title: "Documento 1",
-        url: "https://www.assetsweb3.com/assets/doc1-a6439719.pdf",
-      },
-      {
-        id: "doc2",
-        title: "Documento 2",
-        url: "https://www.assetsweb3.com/assets/doc2-f9347f43.pdf",
-      },
-      {
-        id: "doc3",
-        title: "Documento test",
-        url: "https://www.assetsweb3.com/assets/doc3-35f79f0c.pdf",
-      },]
-  },
-  {
-    id: 3,
-    img: img2,
-    icon: icon2,
-    name: "Asset web3",
-    symbol: "AW3",
-    price: 900,
-    price_etc: 0.143462934104,
-
-    maxSupply: 1000,
-    adress_token: "0x568A5f0fe54BDFfa0e39bd3dBcF6e56b31CBFdf7",
+    maxSupply: 90,
+    adress_token: "0xC1028Bd8A96242e719fA7601784584EcbFde0E13",
     adress_parity: "0xe670B1255d67BC53e68b78A9dC39811Ae3ee1DE6",
-    adress_sales: "0xa13188DFe152793Cd9FC8add0CC843552442D4fE",
-    description:"Assets web 3 description ",
-    documData:[
-      {
-        id: "doc1",
-        title: "Documento 1",
-        url: "https://www.assetsweb3.com/assets/doc1-a6439719.pdf",
-      },
-      {
-        id: "doc2",
-        title: "Documento 2",
-        url: "https://www.assetsweb3.com/assets/doc2-f9347f43.pdf",
-      },
-      {
-        id: "doc3",
-        title: "Documento test",
-        url: "https://www.assetsweb3.com/assets/doc3-35f79f0c.pdf",
-      },]
-  },
-  {
-    id: 4,
-    img: img2,
-    icon: icon2,
-    name: "TokenTest",
-    symbol: "Test",
-    price: 900,
-    price_etc: 0.143462934104,
+    adress_sales: "0x29B27c2F7D76a880899a416f7047D0E285d06592",
 
-    maxSupply: 2,
-    adress_token: "0x698E339981E5720bA826C2134D9ba706ED96Be33",
-    adress_parity: "0xe670B1255d67BC53e68b78A9dC39811Ae3ee1DE6",
-    adress_sales: "0xef23EfEAEDA5478200e6f7A02f4ef5f895E0E5fB",
-    description:"Assets web 3 description ",
+    description:"Description token test",
     documData:[
       {
         id: "doc1",
-        title: "Documento 1",
+        title: "DOCUMENTO 1",
         url: "https://www.assetsweb3.com/assets/doc1-a6439719.pdf",
-      },
-      {
-        id: "doc2",
-        title: "Documento 2",
-        url: "https://www.assetsweb3.com/assets/doc2-f9347f43.pdf",
-      },
-      {
-        id: "doc3",
-        title: "Documento test",
-        url: "https://www.assetsweb3.com/assets/doc3-35f79f0c.pdf",
-      },]
-  },
+      }]
+  }
 ];
 
 export default MarketData;
