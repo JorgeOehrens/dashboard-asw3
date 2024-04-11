@@ -4,7 +4,10 @@ import { useEffect, useState } from 'react';
 import { Transaction } from "@/utils/types";
 import getAllTransactionsData from "@/utils/transactionsToken2";
 import getAllTransactionsToken from "@/utils/TransactionProyect";
+type PropsType = {
+  tokenAddress: string;
 
+};
 // Hook personalizado para determinar si estamos en el lado del cliente
 const useIsClient = () => {
   const [isClient, setIsClient] = useState(false);
@@ -16,7 +19,7 @@ const useIsClient = () => {
   return isClient;
 };
 
-const RecentTransactions = () => {
+const RecentTransactionsToken = ({tokenAddress}:PropsType) => {
   const [transactions2, setTransactions2] = useState<Transaction[]>([]);
 
   const isClient = useIsClient();
@@ -25,7 +28,7 @@ const RecentTransactions = () => {
     const fetchTransactions = async () => {
       if (isClient) { // Solo ejecutar en el lado del cliente
         try {
-          const transactionsData2 = await getAllTransactionsData();
+          const transactionsData2 = await getAllTransactionsToken(tokenAddress);
           setTransactions2(transactionsData2); // Actualizar el estado con las transacciones obtenidas
         } catch (error) {
           console.error('Error fetching transactions:', error);
@@ -50,4 +53,4 @@ const RecentTransactions = () => {
   );
 };
 
-export default RecentTransactions;
+export default RecentTransactionsToken;

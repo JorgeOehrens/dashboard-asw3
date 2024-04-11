@@ -25,7 +25,7 @@ const BuyToken = async (nToken: string,address: string) => {
         await buying.wait();
 
         console.log(buying);
-        // window.location.reload();
+        window.location.reload();
     } catch (error) {
         console.log(error);
     }

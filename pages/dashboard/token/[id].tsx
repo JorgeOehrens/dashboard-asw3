@@ -1,7 +1,7 @@
 import Descriptions from "@/components/nftDetails/Descriptions";
 import MoreCollection from "@/components/nftDetails/MoreCollection";
 import NftDetailsCard from "@/components/nftDetails/NftDetailsCard";
-import RecentTransactions from "@/components/home/RecentTransactions";
+import RecentTransactionsToken from "@/components/home/RecentTransactionsToken";
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
@@ -21,7 +21,8 @@ export default function NftDetails() {
          {tokenAddress && <Descriptions tokenAddress={tokenAddress} />}
         </div>
         <div className="w-full lg:w-1/2">
-          <RecentTransactions />
+        {tokenAddress && <RecentTransactionsToken tokenAddress={tokenAddress} />}
+
         </div>
       </div>
       <MoreCollection />
